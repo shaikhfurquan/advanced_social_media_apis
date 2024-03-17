@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt"
 import UserModel from '../models/userModel.js'
+import  generateToken  from "../helpers/generateToken.js"
 
 export const registerUser = async (req, res) => {
     try {
@@ -46,7 +47,7 @@ export const loginUser = async (req, res) => {
 
         }
         if (!user) {
-            return res.status(404).josn({
+            return res.status(404).json({
                 success: false,
                 message: "User not found, Please register first."
             })
@@ -55,15 +56,25 @@ export const loginUser = async (req, res) => {
         // if user is there then we need to verify his password
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) {
-            return res.status(404).josn({
+            return res.status(404).json({
                 success: false,
                 message: "Invalid Credentials"
             })
         }
 
-        res.status(200).json({
+        user.password = undefined
+        const token = generateToken(user)
+
+        // storing the token into cookies
+        const jwtOptions = {
+            expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+            httpOnly: true,
+        }
+
+        res.cookie('token', token, jwtOptions).status(200).json({
             success: true,
             message: `Welcome ${user.userName}`,
+            token: token,
             user: user
 
         })
@@ -73,5 +84,42 @@ export const loginUser = async (req, res) => {
             message: "Error while login user",
             error: error.message || error
         })
+    }
+}
+
+
+export const logoutUser = async (req, res) => {
+    try {
+        res.clearCookie('token', { sameSite: "none", secure: true }).json({
+            success: true,
+            message: "Logged out success"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error while logout user",
+            error: error.message || error
+        })
+
+    }
+}
+
+
+export const getCurrentUser = async (req, res) => {
+    try {
+        // console.log(req.user);
+        const currentUser = await UserModel.findById(req.user._id).select('-password')
+        res.status(200).json({
+            success : true,
+            message : "User profile fetch successfully",
+            currentUser : currentUser
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error while getting user profile",
+            error: error.message || error
+        })
+
     }
 }
