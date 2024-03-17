@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv'
 import morgan from 'morgan';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import connectDB from './db/connectDB.js';
 import authRouter from './routes/authRoute.js';
 
@@ -16,7 +17,7 @@ const PORT = process.env.PORT || 3500
 app.use(express.json())
 app.use(morgan('dev'))
 app.use(cors())
-
+app.use(cookieParser())
 
 // routes
 app.use('/api/auth' , authRouter)
