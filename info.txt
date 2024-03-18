@@ -1,0 +1,74 @@
+
+Advanced Social Media Backend Apis:-
+
+
+Auth Apis
+
+REGISTER API 
+POST ==>  http://localhost:5757/api/auth/register
+{
+    "userName" : "kp",
+    "fullName" : "kp",
+    "email" : "kp@gmail.com",
+    "password" : "123",
+    "bio" : "kp bio"
+}
+
+curl --location 'http://localhost:5757/api/auth/register' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDRjY2Q4ODkxNWE3NjFiMzMxYTYiLCJpYXQiOjE3MTA2OTU5NjAsImV4cCI6MTcxMTMwMDc2MH0.uQ4h16gsZlWHoAlWkIn9ImIABfv0bVOY4GmX0LqAoZ0' \
+--data-raw '{
+    "userName" : "kp",
+    "fullName" : "kp",
+    "email" : "kp@gmail.com",
+    "password" : "123",
+    "bio" : "kp bio"
+
+}'
+
+
+
+
+LOGIN API
+POST ==>  http://localhost:5757/api/auth/login
+{
+    "email" : "kp@gmail.com",
+    // "userName" : "sf",
+    "password" : "123"
+}
+
+curl --location 'http://localhost:5757/api/auth/login' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDRjY2Q4ODkxNWE3NjFiMzMxYTYiLCJpYXQiOjE3MTA2OTU5NjAsImV4cCI6MTcxMTMwMDc2MH0.uQ4h16gsZlWHoAlWkIn9ImIABfv0bVOY4GmX0LqAoZ0' \
+--data-raw '{
+    "email" : "kp@gmail.com",
+    
+    "password" : "123"
+}'
+
+
+
+LOGOUT API
+GET ==>  http://localhost:5757/api/auth/logout
+
+curl --location 'http://localhost:5757/api/auth/logout' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDRjY2Q4ODkxNWE3NjFiMzMxYTYiLCJpYXQiOjE3MTA2OTQ1OTAsImV4cCI6MTcxMTI5OTM5MH0.25ruAr9I8z6wj-N4yzeqaizrHNjCqCIqYd5QQGzp1hE'
+
+
+
+CURRENT PROFILE
+GET ==>  http://localhost:5757/api/auth/current-user
+
+curl --location 'http://localhost:5757/api/auth/current-user' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDRjY2Q4ODkxNWE3NjFiMzMxYTYiLCJpYXQiOjE3MTA2OTQ1OTAsImV4cCI6MTcxMTI5OTM5MH0.25ruAr9I8z6wj-N4yzeqaizrHNjCqCIqYd5QQGzp1hE'
+
+
+
+
+USRES APIS
+
+GET SINGLE USER
+GET ==>  http://localhost:5757/api/user/get/65f6d4add88915a761b331a2
+
+curl --location 'http://localhost:5757/api/user/get/65f6d4add88915a761b331a2' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTA3NDkzMzUsImV4cCI6MTcxMTM1NDEzNX0.lLGQJx-2pjzb-W_k6D0g3ugVyUkffdx9Ny003s-qLw4'
