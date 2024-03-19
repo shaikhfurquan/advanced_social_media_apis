@@ -96,3 +96,50 @@ export const followUser = async (req, res) => {
     }
 
 }
+
+
+
+export const unfollowUser = async (req, res) => {
+    try {
+       // which user we want to un-follow so mentioned in the req.params(userId)
+        const { userId } = req.params
+
+        //login user
+        const { _id } = req.user;
+
+        const userToUnfollow = await UserModel.findById(userId)
+        const loggedInUser = await UserModel.findById(_id)
+
+
+        // console.log("userTounFollow==>" , userToUnfollow);
+        // console.log("loggedinuser==>" , loggedInUser);
+
+        if(!userToUnfollow || !loggedInUser){
+            return handleValidationError(res, "User Not found", 404) 
+        }
+        
+        // if not following the user then we will check this
+        if(!loggedInUser.following.includes(userId)){
+            return handleValidationError(res, "Not following this user", 400)
+        }
+
+        // if following the user then we will filter out from the following array
+        loggedInUser.following=loggedInUser.following.filter(id => id.toString() !== userId)
+        userToUnfollow.followers = userToUnfollow.followers.filter(id => id.toString() !== _id)
+
+        await loggedInUser.save()
+        await userToUnfollow.save()
+
+        res.status(200).json({
+            success : true,
+            message : "successfully Un-followed user"
+        })
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id')
+        }
+        handleCatchError(res, 'Error updating user', error, 500);
+    }
+
+}
