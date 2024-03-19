@@ -63,6 +63,7 @@ curl --location 'http://localhost:5757/api/auth/current-user' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDRjY2Q4ODkxNWE3NjFiMzMxYTYiLCJpYXQiOjE3MTA2OTQ1OTAsImV4cCI6MTcxMTI5OTM5MH0.25ruAr9I8z6wj-N4yzeqaizrHNjCqCIqYd5QQGzp1hE'
 
 
+================================================================================================================================
 
 
 USRES APIS
@@ -72,3 +73,20 @@ GET ==>  http://localhost:5757/api/user/get/65f6d4add88915a761b331a2
 
 curl --location 'http://localhost:5757/api/user/get/65f6d4add88915a761b331a2' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTA3NDkzMzUsImV4cCI6MTcxMTM1NDEzNX0.lLGQJx-2pjzb-W_k6D0g3ugVyUkffdx9Ny003s-qLw4'
+
+
+
+UPDATE USER
+PUT ==>  http://localhost:5757/api/user/update
+{
+     "bio" : "shaikh bio"
+}
+
+curl --location --request PUT 'http://localhost:5757/api/user/update' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTA3NTY4MzgsImV4cCI6MTcxMTM2MTYzOH0.O9E_5GNj5-EG3Z3XB_P1rfux_SKW4cNlB0jnQ_VnLTE' \
+--data '{
+     "bio" : "shaikh bio"
+}'
+
+
