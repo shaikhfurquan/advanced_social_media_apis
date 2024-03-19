@@ -124,3 +124,11 @@ POST ==>  http://localhost:5757/api/user/unblock/65f6d4add88915a761b331a2
 
 curl --location --request POST 'http://localhost:5757/api/user/unblock/65f6d4add88915a761b331a2' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTA4MzQ4NTgsImV4cCI6MTcxMTQzOTY1OH0.QCF7Y1yWxiMa_iK8bDc-j17uqmpNPCCZYWMjImACKOM'
+
+
+
+BLOCK USER LISTS
+GET ==>  http://localhost:5757/api/user/blocked-lists
+
+curl --location 'http://localhost:5757/api/user/blocked-lists' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTA4NTIyODUsImV4cCI6MTcxMTQ1NzA4NX0.QHwJz2MtZb4nADWpvULVk_AQJuewTymrC63IGX2k2Yg'

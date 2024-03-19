@@ -1,5 +1,5 @@
 import express from 'express';
-import { blockUser, followUser, getSingleUser, unblockUser, unfollowUser, updateUser } from '../controllers/userController.js';
+import { blockUser, followUser, getBlockLists, getSingleUser, unblockUser, unfollowUser, updateUser } from '../controllers/userController.js';
 import { isAuthenticated } from '../middlewares/isAuthenticate.js';
 
 const userRouter = express.Router();
@@ -20,5 +20,9 @@ userRouter.post('/block/:userId' , isAuthenticated , blockUser )
 
 
 userRouter.post('/unblock/:userId' , isAuthenticated , unblockUser )
+
+
+// GET BLOCK USERS LISTS
+userRouter.get('/blocked-lists' , isAuthenticated , getBlockLists )
 
 export default userRouter

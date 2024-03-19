@@ -60,28 +60,28 @@ export const followUser = async (req, res) => {
 
         const userToFollow = await UserModel.findById(userId)
         const loggedInUser = await UserModel.findById(_id)
-        
-        
+
+
         // console.log("userToFollow==>" , userToFollow);
         // console.log("loggedinuser==>" , loggedInUser);
-        
+
         if (!userToFollow || !loggedInUser) {
             return handleValidationError(res, "User not found", 400)
         }
-        
+
         // if user already followed then
         if (loggedInUser.following.includes(userId)) {
             return handleValidationError(res, "Already followed", 400)
         }
-        
+
         //follow user
         loggedInUser.following.push(userId)
         userToFollow.followers.push(_id)
-        
+
         // saving the both users
         await loggedInUser.save()
         await userToFollow.save()
-        
+
         res.status(200).json({
             success: true,
             message: "successfully followed user"
@@ -94,7 +94,7 @@ export const followUser = async (req, res) => {
         }
         handleCatchError(res, 'Error follow user', error, 500);
     }
-    
+
 }
 
 
@@ -103,34 +103,34 @@ export const unfollowUser = async (req, res) => {
     try {
         // which user we want to un-follow so mentioned in the req.params(userId)
         const { userId } = req.params
-        
+
         //login user
         const { _id } = req.user;
-        
+
         const userToUnfollow = await UserModel.findById(userId)
         const loggedInUser = await UserModel.findById(_id)
-        
-        
+
+
         // console.log("userTounFollow==>" , userToUnfollow);
         // console.log("loggedinuser==>" , loggedInUser);
-        
+
         if (!userToUnfollow || !loggedInUser) {
             return handleValidationError(res, "User Not found", 404)
         }
-        
+
         // if not following the user then we will check this
         if (!loggedInUser.following.includes(userId)) {
             return handleValidationError(res, "Not following this user", 400)
         }
-        
+
         // if following the user then we will filter out from the following array
         loggedInUser.following = loggedInUser.following.filter(id => id.toString() !== userId)
         userToUnfollow.followers = userToUnfollow.followers.filter(id => id.toString() !== _id)
-        
+
         //saving the users
         await loggedInUser.save()
         await userToUnfollow.save()
-        
+
         res.status(200).json({
             success: true,
             message: "successfully Un-followed user"
@@ -142,7 +142,7 @@ export const unfollowUser = async (req, res) => {
         }
         handleCatchError(res, 'Error un-follow user', error, 500);
     }
-    
+
 }
 
 
@@ -151,38 +151,38 @@ export const blockUser = async (req, res) => {
     try {
         // which user we want block so mentioned in the req.params(userId)
         const { userId } = req.params
-        
+
         //login user
         const { _id } = req.user;
 
-        if(userId === _id){
+        if (userId === _id) {
             return handleValidationError(res, "You cannot block yourself.", 400)
         }
-        
-        
+
+
         const userToBlock = await UserModel.findById(userId)
         const loggedInUser = await UserModel.findById(_id)
-        
-        if(!userToBlock || !loggedInUser){
+
+        if (!userToBlock || !loggedInUser) {
             return handleValidationError(res, "User not found.", 400)
         }
-        
+
         // if the user is logged exists in the block list then
-        if(loggedInUser.blockList.includes(userId)){
-            return handleValidationError(res , "User already in the block list", 409)
+        if (loggedInUser.blockList.includes(userId)) {
+            return handleValidationError(res, "User already in the block list", 409)
         }
-        
+
         // else we will push in the block list
         loggedInUser.blockList.push(userId)
-        
-        
+
+
         //if the user is present in the following/followers list then we will also remove the user from that
-        loggedInUser.following = loggedInUser.following.filter(id =>id.toString() !== userId)
-        userToBlock.followers = userToBlock.followers.filter(id =>id.toString() !== _id)
-        
-        
+        loggedInUser.following = loggedInUser.following.filter(id => id.toString() !== userId)
+        userToBlock.followers = userToBlock.followers.filter(id => id.toString() !== _id)
+
+
         //saving the users
-        await loggedInUser.save()       
+        await loggedInUser.save()
         await userToBlock.save()
 
         res.status(200).json({
@@ -205,28 +205,28 @@ export const unblockUser = async (req, res) => {
     try {
         // which user we want Un-block so mentioned in the req.params(userId)
         const { userId } = req.params
-        
+
         //login user
         const { _id } = req.user;
 
-        if(userId === _id){
+        if (userId === _id) {
             return handleValidationError(res, "You cannot Un-block yourself.", 400)
         }
-        
+
         const userToUnblock = await UserModel.findById(userId)
         const loggedInUser = await UserModel.findById(_id)
 
-        if(!userToUnblock || !loggedInUser){
-            return handleValidationError(res , "User not found.", 400)
+        if (!userToUnblock || !loggedInUser) {
+            return handleValidationError(res, "User not found.", 400)
         }
-       
 
-        if(!loggedInUser.blockList.includes(userId)){
-            return handleValidationError(res , "Not blocked this user" , 400)
+
+        if (!loggedInUser.blockList.includes(userId)) {
+            return handleValidationError(res, "Not blocked this user", 400)
         }
 
         loggedInUser.blockList = loggedInUser.blockList.filter(id => id.toString() !== userId)
-        
+
         //saving the user
         await loggedInUser.save()
         res.status(200).json({
@@ -239,6 +239,35 @@ export const unblockUser = async (req, res) => {
             return handleCastError(res, 'Invalid Id')
         }
         handleCatchError(res, 'Error un-block user', error, 500);
+    }
+
+}
+
+
+
+export const getBlockLists = async (req, res) => {
+    try {
+        //finding the login user id
+        const { _id } = req.user
+        const user = await UserModel.findById(_id).populate("blockList", "userName fullName , profilePicture")
+
+        if (!user) {
+            return handleValidationError(res, "User not found", 404);
+        }
+
+        const { blockList } = user
+        res.status(200).json({
+            success: true,
+            message: "Block profiles fetch successfully",
+            blockListCount: blockList.length,
+            blockList: blockList
+        })
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, '==Invalid Id')
+        }
+        handleCatchError(res, 'Error getting the block users', error, 500);
     }
 
 }
