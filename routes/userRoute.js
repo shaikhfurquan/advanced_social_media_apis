@@ -1,5 +1,5 @@
 import express from 'express';
-import { followUser, getSingleUser, unfollowUser, updateUser } from '../controllers/userController.js';
+import { blockUser, followUser, getSingleUser, unfollowUser, updateUser } from '../controllers/userController.js';
 import { isAuthenticated } from '../middlewares/isAuthenticate.js';
 
 const userRouter = express.Router();
@@ -12,6 +12,8 @@ userRouter.post('/follow/:userId' , isAuthenticated , followUser )
 
 // which user we want to follow so mentioned in the req.params(userId)
 userRouter.post('/unfollow/:userId' , isAuthenticated , unfollowUser )
+
+userRouter.post('/block/:userId' , isAuthenticated , blockUser )
 
 
 export default userRouter
