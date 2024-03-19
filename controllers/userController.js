@@ -43,3 +43,56 @@ export const updateUser = async (req, res) => {
     }
 }
 
+
+export const followUser = async (req, res) => {
+    try {
+       // which user we want to follow so mentioned in the req.params(userId)
+        const { userId } = req.params
+
+        //login user
+        const { _id } = req.user;
+
+
+        console.log(userId , _id);
+        if (userId === _id) {
+            return handleValidationError(res, "You cannot follow useself", 400)
+        }
+
+        const userToFollow = await UserModel.findById(userId)
+        const loggedInUser = await UserModel.findById(_id)
+
+
+        // console.log("userToFollow==>" , userToFollow);
+        // console.log("loggedinuser==>" , loggedInUser);
+
+        if (!userToFollow || !loggedInUser) {
+            return handleValidationError(res, "User not found", 400)
+        }
+
+        // if user already followed then
+        if (loggedInUser.following.includes(userId)) {
+            return handleValidationError(res, "Already followed", 400)
+        }
+
+        //follow user
+        loggedInUser.following.push(userId)
+        userToFollow.followers.push(_id)
+
+        // saving the both users
+        await loggedInUser.save()
+        await userToFollow.save()
+
+        res.status(200).json({
+            success : true,
+            message : "successfully followed user"
+        })
+
+    } catch (error) {
+
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id')
+        }
+        handleCatchError(res, 'Error updating user', error, 500);
+    }
+
+}

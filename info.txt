@@ -90,3 +90,9 @@ curl --location --request PUT 'http://localhost:5757/api/user/update' \
 }'
 
 
+
+FOLLOW USER
+         (other userId which we want to follow the user  ==> 65f6d4add88915a761b331a2)
+POST ==> http://localhost:5757/api/user/follow/65f6d4add88915a761b331a2
+
+
