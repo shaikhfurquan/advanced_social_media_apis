@@ -102,7 +102,7 @@ curl --location --request POST 'http://localhost:5757/api/user/follow/65f6d4add8
 
 
 UN-FOLLOW USER
-         (other userId which we want to follow the user  ==> 65f6d4add88915a761b331a2)
+         (other userId which we want to un-follow the user  ==> 65f6d4add88915a761b331a2)
 POST ==>  http://localhost:5757/api/user/unfollow/65f6d4add88915a761b331a2
 
 curl --location --request POST 'http://localhost:5757/api/user/unfollow/65f6d4add88915a761b331a2' \
@@ -111,8 +111,16 @@ curl --location --request POST 'http://localhost:5757/api/user/unfollow/65f6d4ad
 
 
 BLOCK USER
-         (other userId which we want to follow the user  ==> 65f6d4add88915a761b331a2)
+         (other userId which we want to block the user  ==> 65f6d4add88915a761b331a2)
 POST ==> http://localhost:5757/api/user/block/65f6d4add88915a761b331a2
 
 curl --location --request POST 'http://localhost:5757/api/user/block/65f6d4add88915a761b331a2' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTA4MzQ4NTgsImV4cCI6MTcxMTQzOTY1OH0.QCF7Y1yWxiMa_iK8bDc-j17uqmpNPCCZYWMjImACKOM'
+
+
+UN-BLOCK USER
+         (other userId which we want to unblock the user  ==> 65f6d4add88915a761b331a2)
+POST ==>  http://localhost:5757/api/user/unblock/65f6d4add88915a761b331a2
+
+curl --location --request POST 'http://localhost:5757/api/user/unblock/65f6d4add88915a761b331a2' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTA4MzQ4NTgsImV4cCI6MTcxMTQzOTY1OH0.QCF7Y1yWxiMa_iK8bDc-j17uqmpNPCCZYWMjImACKOM'

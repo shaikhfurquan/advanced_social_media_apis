@@ -194,7 +194,51 @@ export const blockUser = async (req, res) => {
         if (error.name === 'CastError') {
             return handleCastError(res, 'Invalid Id')
         }
-        handleCatchError(res, 'Error updating user', error, 500);
+        handleCatchError(res, 'Error block user', error, 500);
+    }
+
+}
+
+
+
+export const unblockUser = async (req, res) => {
+    try {
+        // which user we want Un-block so mentioned in the req.params(userId)
+        const { userId } = req.params
+        
+        //login user
+        const { _id } = req.user;
+
+        if(userId === _id){
+            return handleValidationError(res, "You cannot Un-block yourself.", 400)
+        }
+        
+        const userToUnblock = await UserModel.findById(userId)
+        const loggedInUser = await UserModel.findById(_id)
+
+        if(!userToUnblock || !loggedInUser){
+            return handleValidationError(res , "User not found.", 400)
+        }
+       
+
+        if(!loggedInUser.blockList.includes(userId)){
+            return handleValidationError(res , "Not blocked this user" , 400)
+        }
+
+        loggedInUser.blockList = loggedInUser.blockList.filter(id => id.toString() !== userId)
+        
+        //saving the user
+        await loggedInUser.save()
+        res.status(200).json({
+            success: true,
+            message: "successfully Un-blocked user"
+        })
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id')
+        }
+        handleCatchError(res, 'Error un-block user', error, 500);
     }
 
 }
