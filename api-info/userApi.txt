@@ -132,3 +132,12 @@ GET ==>  http://localhost:5757/api/user/blocked-lists
 
 curl --location 'http://localhost:5757/api/user/blocked-lists' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTA4NTIyODUsImV4cCI6MTcxMTQ1NzA4NX0.QHwJz2MtZb4nADWpvULVk_AQJuewTymrC63IGX2k2Yg'
+
+
+
+DELETE USER
+DELETE ==>  http://localhost:5757/api/user/delete
+
+
+curl --location --request DELETE 'http://localhost:5757/api/user/delete' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZiMWIxMzk4YzE3OWRlMzRkY2M1MzgiLCJpYXQiOjE3MTA5NTUzMDksImV4cCI6MTcxMTU2MDEwOX0.WFOksq648Sfkyp-uBjvMeHNikRyqbbxkl-l0Uhddw2A'
