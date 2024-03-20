@@ -1,5 +1,8 @@
 import { handleCastError, handleCatchError, handleValidationError } from "../helpers/handleError.js"
 import UserModel from "../models/userModel.js"
+import PostModel from '../models/postModel.js'
+import CommentModel from '../models/commentModel.js'
+import StoryModel from '../models/storyModel.js'
 
 
 export const getSingleUser = async (req, res) => {
@@ -269,5 +272,78 @@ export const getBlockLists = async (req, res) => {
         }
         handleCatchError(res, 'Error getting the block users', error, 500);
     }
+}
 
+
+export const deleteUser = async (req, res) => {
+    try {
+        //finding the login user id
+        // const { _id } = req.user
+        const userToDelete = await UserModel.findById(req.user._id)
+        userToDelete.save()
+        if (!userToDelete) {
+            return handleValidationError(res, 'User not found', 404);
+        }
+
+        // if user is there then we need to delete all things associated to that user
+
+        // deleting all user posts
+        await PostModel.deleteMany({ user: req.user._id })
+
+        // deleting users comments from other users posts
+        await PostModel.deleteMany({ "comments.user": req.user._id })
+
+        // deleting users replies from other users posts
+        await PostModel.deleteMany({ "comments.replies.user": req.user._id })
+
+        // deleting all comments 
+        await CommentModel.deleteMany({ user: req.user._id })
+
+        // deleting all story
+        await StoryModel.deleteMany({ user: req.user._id })
+
+        // deleting all likes from other users posts(pulling the userId from the likes array)
+        await PostModel.updateMany({ likes: req.user._id }, { $pull: { likes: req.user._id } })
+
+        // inside the usermodel it  will go to the following users account of the user that we are going to delete and it will take all of the following users and from there follwers array it will remove the users id
+        await UserModel.updateMany(
+            { _id: { $in: userToDelete.following } },
+            { $pull: { followers: req.user._id } }
+        )
+
+        //removing the likes from the other users comments
+        await CommentModel.updateMany({}, { $pull: { likes: req.user._id } })
+
+        //pull the user likes from the replies
+        await CommentModel.updateMany({ "replies.likes": req.user._id }, { $pull: { "replies.likes": req.user._id } })
+
+        //removing the user likes from the posts
+        await PostModel.updateMany({}, { $pull: { likes: req.user._id } })
+
+        //removing the replies of the user from the other users commments(finding the users replies from other user comments)
+        const replyComments = await CommentModel.find({ "replies.user": req.user._id })
+
+
+        // deleting the all replies user comments
+        await  Promise.all(
+            replyComments.map(async (comment)=>{
+                comment.replies = comment.replies.filter((reply)=>reply.user.toString() !== req.user._id)
+                await Comment.save()
+            })
+        )
+
+        // deleting the user
+        await userToDelete.deleteOne()
+
+        res.status(200).json({
+            success: true,
+            message: "Everything associated with the user has been deleted successfully"
+        })
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, '==Invalid Id')
+        }
+        handleCatchError(res, 'Error deleting users', error, 500);
+    }
 }
