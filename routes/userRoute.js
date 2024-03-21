@@ -1,5 +1,5 @@
 import express from 'express';
-import { blockUser, deleteUser, followUser, getBlockLists, getSingleUser, unblockUser, unfollowUser, updateUser } from '../controllers/userController.js';
+import { blockUser, deleteUser, followUser, getBlockLists, getSingleUser, searchUser, unblockUser, unfollowUser, updateUser } from '../controllers/userController.js';
 import { isAuthenticated } from '../middlewares/isAuthenticate.js';
 
 const userRouter = express.Router();
@@ -25,6 +25,9 @@ userRouter.post('/unblock/:userId' , isAuthenticated , unblockUser )
 // GET BLOCK USERS LISTS
 userRouter.get('/blocked-lists' , isAuthenticated , getBlockLists )
 
-
+//delete user
 userRouter.delete('/delete' , isAuthenticated , deleteUser)
+
+//serch user
+userRouter.get('/search/:query' , isAuthenticated , searchUser)
 export default userRouter

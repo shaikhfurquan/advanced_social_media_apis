@@ -325,9 +325,9 @@ export const deleteUser = async (req, res) => {
 
 
         // deleting the all replies user comments
-        await  Promise.all(
-            replyComments.map(async (comment)=>{
-                comment.replies = comment.replies.filter((reply)=>reply.user.toString() !== req.user._id)
+        await Promise.all(
+            replyComments.map(async (comment) => {
+                comment.replies = comment.replies.filter((reply) => reply.user.toString() !== req.user._id)
                 await Comment.save()
             })
         )
@@ -345,5 +345,39 @@ export const deleteUser = async (req, res) => {
             return handleCastError(res, '==Invalid Id')
         }
         handleCatchError(res, 'Error deleting users', error, 500);
+    }
+}
+
+
+export const searchUser = async (req, res) => {
+    try {
+        const { query } = req.params
+
+        const users = await UserModel.find({
+            $or: [
+                { userName: { $regex: new RegExp(query, 'i') } },
+                { fullName: { $regex: new RegExp(query, 'i') } }
+            ]
+        })
+
+        console.log(users);
+        if (users.length === 0) {
+            res.status(200).json({
+                success: true,
+                message: "User not found",
+                users: users
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "User fetch successfully",
+            users: users
+        })
+
+
+
+    } catch (error) {
+        handleCatchError(res, 'Error while searching users', error, 500);
     }
 }

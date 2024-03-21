@@ -141,3 +141,11 @@ DELETE ==>  http://localhost:5757/api/user/delete
 
 curl --location --request DELETE 'http://localhost:5757/api/user/delete' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZiMWIxMzk4YzE3OWRlMzRkY2M1MzgiLCJpYXQiOjE3MTA5NTUzMDksImV4cCI6MTcxMTU2MDEwOX0.WFOksq648Sfkyp-uBjvMeHNikRyqbbxkl-l0Uhddw2A'
+
+
+
+SEARCH USER
+GET ==>  http://localhost:5757/api/user/search/kP
+
+curl --location 'http://localhost:5757/api/user/search/k' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZiMWIxMzk4YzE3OWRlMzRkY2M1MzgiLCJpYXQiOjE3MTA5NTUzMDksImV4cCI6MTcxMTU2MDEwOX0.WFOksq648Sfkyp-uBjvMeHNikRyqbbxkl-l0Uhddw2A'
