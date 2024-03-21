@@ -1,6 +1,7 @@
 import express from 'express';
-import { blockUser, deleteUser, followUser, getBlockLists, getSingleUser, searchUser, unblockUser, unfollowUser, updateUser } from '../controllers/userController.js';
+import { blockUser, deleteUser, followUser, getBlockLists, getSingleUser, searchUser, unblockUser, unfollowUser, updateUser, uploadProfilePicture } from '../controllers/userController.js';
 import { isAuthenticated } from '../middlewares/isAuthenticate.js';
+import upload from '../middlewares/upload.js';
 
 const userRouter = express.Router();
 
@@ -30,4 +31,9 @@ userRouter.delete('/delete' , isAuthenticated , deleteUser)
 
 //serch user
 userRouter.get('/search/:query' , isAuthenticated , searchUser)
+
+//update profile
+userRouter.put('/update-profile-picture' , isAuthenticated , upload.single("profilePicture" ), uploadProfilePicture)
+
+
 export default userRouter

@@ -149,3 +149,15 @@ GET ==>  http://localhost:5757/api/user/search/kP
 
 curl --location 'http://localhost:5757/api/user/search/k' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZiMWIxMzk4YzE3OWRlMzRkY2M1MzgiLCJpYXQiOjE3MTA5NTUzMDksImV4cCI6MTcxMTU2MDEwOX0.WFOksq648Sfkyp-uBjvMeHNikRyqbbxkl-l0Uhddw2A'
+
+
+
+UPDATE PROFILE PICTURE
+PUT ==> http://localhost:5757/api/user/update-profile-picture
+        profilePicture ==> select image
+
+curl --location --request PUT 'http://localhost:5757/api/user/update-profile-picture' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTEwMTE5MzUsImV4cCI6MTcxMTYxNjczNX0.0H_AQzyADErXoBqNp-3RN2AKRd7z1Rnsx3vSwIWXfow' \
+--form 'profilePicture=@"/G:/Desktop Wallpaper/∆LE_._ZkJmRmZdcg.jpg"'
+
+

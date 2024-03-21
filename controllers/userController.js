@@ -360,7 +360,7 @@ export const searchUser = async (req, res) => {
             ]
         })
 
-        console.log(users);
+        // console.log(users);
         if (users.length === 0) {
             res.status(200).json({
                 success: true,
@@ -375,9 +375,37 @@ export const searchUser = async (req, res) => {
             users: users
         })
 
-
-
     } catch (error) {
         handleCatchError(res, 'Error while searching users', error, 500);
+    }
+}
+
+
+
+export const uploadProfilePicture = async (req, res) => {
+    try {
+        
+        const generateFileUrl = (filename) =>{
+            return process.env.URL+`/uploads/${filename}`
+        }
+        const { _id } = req.user
+        const { filename } = req.file
+        // console.log(filename);
+
+
+        // finding the user and update
+        const user = await UserModel.findByIdAndUpdate(_id, { profilePicture: generateFileUrl(filename) }, { new: true })
+
+        if (!user) {
+            handleValidationError(res, 'User not found', 404);
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Profile updated successfully",
+            user: user
+        })
+    } catch (error) {
+        handleCatchError(res, 'Error while uploading profile picture', error, 500);
     }
 }
