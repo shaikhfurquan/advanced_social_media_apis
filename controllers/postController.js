@@ -118,3 +118,36 @@ export const updatePost = async (req, res) => {
 
     }
 }
+
+
+
+export const getAllPosts = async (req, res) => {
+    try {
+
+        const user = await UserModel.findById(req.params.userId)
+        console.log(user);
+        if(!user){
+            return handleValidationError(res, 'User not found' , 404);
+        }
+
+        // finding the block users by Id(we dont want to show to block users)
+        const blockUsersIds = user.blockList.map(id => id.toString())
+
+        // showing the posts excluding with block users
+        const allPosts = await PostModel.find({user : {$nin : blockUsersIds}}).populate("user" , "userName fullName profilePicture")
+
+        res.status(201).json({
+            success: true,
+            message: "Post fetched successfully",
+            post: allPosts
+        })
+
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while getting the posts', error, 500);
+
+    }
+}

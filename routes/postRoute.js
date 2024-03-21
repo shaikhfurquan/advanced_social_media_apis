@@ -1,7 +1,7 @@
 import express from 'express';
 import upload from '../middlewares/upload.js';
 import { isAuthenticated } from '../middlewares/isAuthenticate.js';
-import { createPost, createPostWithImages, updatePost } from '../controllers/postController.js';
+import { createPost, createPostWithImages, getAllPosts, updatePost } from '../controllers/postController.js';
 
 
 const postRouter = express.Router();
@@ -17,5 +17,8 @@ postRouter.post('/create-with-image', isAuthenticated, upload.array("images", 5)
 // update post 
 postRouter.put('/update/:postId', isAuthenticated, updatePost)
 
+
+// get all posts
+postRouter.get('/get-all/:userId' , isAuthenticated , getAllPosts)
 
 export default postRouter

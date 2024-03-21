@@ -44,3 +44,11 @@ curl --location --request PUT 'http://localhost:5757/api/post/update/65fc6e6dcf3
 --data '{
     "caption" : "This is sf caption"
 }'
+
+
+
+GET ALL POSTS
+GET ==>  http://localhost:5757/api/post/get-all/65f6d4add88915a761b331a2
+
+curl --location 'http://localhost:5757/api/post/get-all/65f6d4add88915a761b331a2' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDRhZGQ4ODkxNWE3NjFiMzMxYTIiLCJpYXQiOjE3MTEwNTE2NjQsImV4cCI6MTcxMTY1NjQ2NH0.WPnid1HeU_iMBJxh1vJO2uob_C_WgRCNHpw1K5Wnvf0'
