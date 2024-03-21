@@ -1,5 +1,5 @@
 import express from 'express';
-import { blockUser, deleteUser, followUser, getBlockLists, getSingleUser, searchUser, unblockUser, unfollowUser, updateUser, uploadProfilePicture } from '../controllers/userController.js';
+import { blockUser, deleteUser, followUser, getBlockLists, getSingleUser, searchUser, unblockUser, unfollowUser, updateUser, uploadProfileCoverPicture, uploadProfilePicture } from '../controllers/userController.js';
 import { isAuthenticated } from '../middlewares/isAuthenticate.js';
 import upload from '../middlewares/upload.js';
 
@@ -32,8 +32,10 @@ userRouter.delete('/delete' , isAuthenticated , deleteUser)
 //serch user
 userRouter.get('/search/:query' , isAuthenticated , searchUser)
 
-//update profile
+//update profile picture
 userRouter.put('/update-profile-picture' , isAuthenticated , upload.single("profilePicture" ), uploadProfilePicture)
 
+//update cover picture
+userRouter.put('/update-cover-picture' , isAuthenticated , upload.single("coverPicture" ), uploadProfileCoverPicture)
 
 export default userRouter

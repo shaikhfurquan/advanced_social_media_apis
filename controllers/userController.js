@@ -381,13 +381,13 @@ export const searchUser = async (req, res) => {
 }
 
 
+const generateFileUrl = (filename) =>{
+    return process.env.URL+`/uploads/${filename}`
+}
 
 export const uploadProfilePicture = async (req, res) => {
     try {
         
-        const generateFileUrl = (filename) =>{
-            return process.env.URL+`/uploads/${filename}`
-        }
         const { _id } = req.user
         const { filename } = req.file
         // console.log(filename);
@@ -402,10 +402,37 @@ export const uploadProfilePicture = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            message: "Profile updated successfully",
+            message: "Profile picture updated successfully",
             user: user
         })
     } catch (error) {
         handleCatchError(res, 'Error while uploading profile picture', error, 500);
+    }
+}
+
+
+
+export const uploadProfileCoverPicture = async (req, res) => {
+    try {
+        
+        const { _id } = req.user
+        const { filename } = req.file
+        // console.log(filename);
+
+
+        // finding the user and update
+        const user = await UserModel.findByIdAndUpdate(_id, { coverPicture: generateFileUrl(filename) }, { new: true })
+
+        if (!user) {
+            handleValidationError(res, 'User not found', 404);
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Cover picture updated successfully",
+            user: user
+        })
+    } catch (error) {
+        handleCatchError(res, 'Error while uploading cover picture', error, 500);
     }
 }

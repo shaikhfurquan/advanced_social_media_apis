@@ -161,3 +161,11 @@ curl --location --request PUT 'http://localhost:5757/api/user/update-profile-pic
 --form 'profilePicture=@"/G:/Desktop Wallpaper/∆LE_._ZkJmRmZdcg.jpg"'
 
 
+
+UPDATE COVER PICTURE
+PUT ==>  http://localhost:5757/api/user/update-cover-picture
+         coverPicture ==> select image
+
+curl --location --request PUT 'http://localhost:5757/api/user/update-cover-picture' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTEwMTE5MzUsImV4cCI6MTcxMTYxNjczNX0.0H_AQzyADErXoBqNp-3RN2AKRd7z1Rnsx3vSwIWXfow' \
+--form 'coverPicture=@"/C:/Users/intel/Downloads/laptop-png.jpg"'
