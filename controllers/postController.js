@@ -151,3 +151,32 @@ export const getAllPosts = async (req, res) => {
 
     }
 }
+
+
+
+export const getUserPosts = async (req, res) =>{
+    try {
+
+        const user = await UserModel.findById(req.user._id)
+
+        if(!user){
+            return handleValidationError(res, 'User not found' , 404);
+        }
+
+        const userPosts = await PostModel.find({user : req.user._id})
+
+        res.status(201).json({
+            success: true,
+            message: "Post fetched successfully",
+            post: userPosts
+        })
+
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while getting user posts', error, 500);
+
+    }
+}

@@ -52,3 +52,11 @@ GET ==>  http://localhost:5757/api/post/get-all/65f6d4add88915a761b331a2
 
 curl --location 'http://localhost:5757/api/post/get-all/65f6d4add88915a761b331a2' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDRhZGQ4ODkxNWE3NjFiMzMxYTIiLCJpYXQiOjE3MTEwNTE2NjQsImV4cCI6MTcxMTY1NjQ2NH0.WPnid1HeU_iMBJxh1vJO2uob_C_WgRCNHpw1K5Wnvf0'
+
+
+
+GET USER POSTS
+GET ==>  http://localhost:5757/api/post/get-user-posts
+
+curl --location 'http://localhost:5757/api/post/get-user-posts' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDRhZGQ4ODkxNWE3NjFiMzMxYTIiLCJpYXQiOjE3MTEwNTI5OTgsImV4cCI6MTcxMTY1Nzc5OH0.BXND3WqnjsSm0S6vkpWafW3deLk_sx5UQnqxc96siDc'
