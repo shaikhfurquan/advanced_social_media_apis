@@ -14,3 +14,17 @@ curl --location 'http://localhost:5757/api/post/create' \
     "caption" : "This is sf caption"
 }'
 
+
+
+CREATE POST WITH IMAGES
+POST ==>  http://localhost:5757/api/post/create-with-image
+          caption : "This is sf caption"
+          images : select images
+
+
+
+curl --location 'http://localhost:5757/api/post/create-with-image' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTEwMTE5MzUsImV4cCI6MTcxMTYxNjczNX0.0H_AQzyADErXoBqNp-3RN2AKRd7z1Rnsx3vSwIWXfow' \
+--form 'caption="sf cap with images"' \
+--form 'images=@"/G:/Desktop Wallpaper/baby.jpg"' \
+--form 'images=@"/G:/Desktop Wallpaper/car.jpg"'
