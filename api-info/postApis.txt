@@ -28,3 +28,19 @@ curl --location 'http://localhost:5757/api/post/create-with-image' \
 --form 'caption="sf cap with images"' \
 --form 'images=@"/G:/Desktop Wallpaper/baby.jpg"' \
 --form 'images=@"/G:/Desktop Wallpaper/car.jpg"'
+
+
+
+
+UPDATE POST caption
+PUT ==>  http://localhost:5757/api/post/update/65fc6e6dcf3e04e86fbbfceb
+{
+    "caption" : "This is sf caption"
+}
+
+curl --location --request PUT 'http://localhost:5757/api/post/update/65fc6e6dcf3e04e86fbbfceb' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTEwMTE5MzUsImV4cCI6MTcxMTYxNjczNX0.0H_AQzyADErXoBqNp-3RN2AKRd7z1Rnsx3vSwIWXfow' \
+--data '{
+    "caption" : "This is sf caption"
+}'
