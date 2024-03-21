@@ -88,6 +88,9 @@ export const getCurrentUser = async (req, res) => {
     try {
         // console.log(req.user);
         const currentUser = await UserModel.findById(req.user._id).select('-password')
+        if(!currentUser){
+            return handleValidationError(res , "User not found", 404)
+        }
         res.status(200).json({
             success : true,
             message : "User profile fetch successfully",
