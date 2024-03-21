@@ -1,0 +1,16 @@
+
+POST APIS
+
+CREATE POST :
+POST ==>  http://localhost:5757/api/post/create
+{
+    "caption" : "This is sf caption"
+}
+
+curl --location 'http://localhost:5757/api/post/create' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTEwMTE5MzUsImV4cCI6MTcxMTYxNjczNX0.0H_AQzyADErXoBqNp-3RN2AKRd7z1Rnsx3vSwIWXfow' \
+--data '{
+    "caption" : "This is sf caption"
+}'
+
