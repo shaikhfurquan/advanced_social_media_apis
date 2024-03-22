@@ -9,6 +9,7 @@ import connectDB from './db/connectDB.js';
 import authRouter from './routes/authRoute.js';
 import userRouter from './routes/userRoute.js';
 import postRouter from './routes/postRoute.js';
+import commentRouter from './routes/commentRoute.js';
 
 dotenv.config()
 
@@ -32,6 +33,7 @@ app.use("/uploads" , express.static(path.join(__dirname, 'uploads')))
 app.use('/api/auth' , authRouter)
 app.use('/api/user' , userRouter)
 app.use('/api/post' , postRouter)
+app.use('/api/comment' , commentRouter)
 
 
 connectDB()

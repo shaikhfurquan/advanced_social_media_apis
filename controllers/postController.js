@@ -302,7 +302,7 @@ export const UnlikePost = async (req, res) => {
 
         // removing the userId from the post likes(array)
         post.likes = post.likes.filter(id => id.toString() !== userId)
-        console.log(post.likes);
+        // console.log(post.likes);
         await post.save();
 
 
