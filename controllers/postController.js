@@ -191,7 +191,15 @@ export const deletePost = async (req, res) => {
         if (!postToDelete) {
             return handleValidationError(res, 'Post not found', 404);
         }
-
+    
+        // Verify if the authenticated user is the owner of the post
+        if (postToDelete.user.toString() !== req.user._id.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: 'You are not authorized to delete this post',
+            });
+        }
+        
         //finding the user associated with this post
         const user = await UserModel.findById(postToDelete.user)
         if (!user) {
