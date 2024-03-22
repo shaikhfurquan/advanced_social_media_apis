@@ -90,3 +90,40 @@ export const createCommentReply = async (req, res) => {
 
     }
 }
+
+
+export const updateComment = async (req, res) => {
+    try {
+        const { commentId } = req.params;
+        const userId = req.user._id;
+        const { text } = req.body;
+
+        // Find the comment
+        const commentToUpdate = await CommentModel.findById(commentId);
+        if (!commentToUpdate) {
+            return handleValidationError(res, 'Comment not found', 404);
+        }
+
+        // Verify if the authenticated user is the owner of the comment
+        if (commentToUpdate.user.toString() !== userId) {
+            return res.status(403).json({
+                success: false,
+                message: 'You are not authorized to update this comment, Onwer only',
+            });
+        }
+
+        // Update the comment
+        const updatedComment = await CommentModel.findByIdAndUpdate(commentId, { text }, { new: true });
+
+        res.status(200).json({
+            success: true,
+            message: 'Comment updated successfully',
+            updatedComment,
+        });
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while updating the comment', error, 500);
+    }
+};

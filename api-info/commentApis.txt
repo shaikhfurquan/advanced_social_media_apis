@@ -31,3 +31,16 @@ curl --location 'http://localhost:5757/api/comment/add/reply/65fdbee5285d6e7af0d
 --data '{
     "text" : "reply on comment"
 }'
+
+
+
+UPDATE COMMENT
+PUT ==>  http://localhost:5757/api/comment/update/65fdbee5285d6e7af0da7f86
+        /commentId
+
+curl --location --request PUT 'http://localhost:5757/api/comment/update/65fdbee5285d6e7af0da7f86' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2ZmNzk3MjRlYjE0YTA3YzE0ZWUiLCJpYXQiOjE3MTExMzQwNjQsImV4cCI6MTcxMTczODg2NH0.Ry9tA_Xo0jZNSSlYY6hSizmjwtSmIUPWrsoQC1JNe-8' \
+--data '{
+ "text" : "mk comment"   
+}'
