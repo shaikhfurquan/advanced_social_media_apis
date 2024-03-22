@@ -76,3 +76,10 @@ POST ==>  http://localhost:5757/api/post/like/65fd3dc59724eb14a07c14db
 
 curl --location --request POST 'http://localhost:5757/api/post/like/65fd3dc59724eb14a07c14db' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2ZmNzk3MjRlYjE0YTA3YzE0ZWUiLCJpYXQiOjE3MTExMDgyMzMsImV4cCI6MTcxMTcxMzAzM30.ENAsLwrNMZvTsc3ggTV9lTN-YkyXKhIv7QtSeA_CuQI'
+
+
+UN-LIKE POST
+POST ==> http://localhost:5757/api/post/un-like/65fd3dc59724eb14a07c14db
+
+curl --location --request POST 'http://localhost:5757/api/post/un-like/65fd3dc59724eb14a07c14db' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2ZmNzk3MjRlYjE0YTA3YzE0ZWUiLCJpYXQiOjE3MTExMDgyMzMsImV4cCI6MTcxMTcxMzAzM30.ENAsLwrNMZvTsc3ggTV9lTN-YkyXKhIv7QtSeA_CuQI'

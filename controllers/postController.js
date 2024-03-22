@@ -274,3 +274,50 @@ export const likePost = async (req, res) => {
 
     }
 }
+
+
+export const UnlikePost = async (req, res) => {
+    try {
+
+        const { postId } = req.params
+        const userId = req.user._id
+        
+
+        //findinbg the post
+        const post = await PostModel.findById(postId)
+        if(!post) {
+            return handleValidationError(res , "Post not found" , 404);
+        }
+
+        //finding the user
+        const user = await UserModel.findById(userId)
+        if(!user){
+            return handleValidationError(res, "User not found" , 404);
+        }
+
+        // checking whether the post is already like or not in the post like(array)
+        if(!post.likes.includes(userId)){
+            return handleValidationError(res , "You have not like the post, first like" , 409);
+        }
+
+        // removing the userId from the post likes(array)
+        post.likes = post.likes.filter(id => id.toString() !== userId)
+        console.log(post.likes);
+        await post.save();
+
+
+        res.status(200).json({
+            success: true,
+            message: "Un-Like the post successfully",
+            post: post
+        })
+
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while un-like post', error, 500);
+
+    }
+}
