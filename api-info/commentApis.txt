@@ -1,0 +1,17 @@
+
+COMMENTS APIS
+
+ADD COMMENT TO POST API
+POST ==>  http://localhost:5757/api/comment/add
+{
+    "postId" : "65fd3dc59724eb14a07c14db",
+    "text" :"comment on the post"
+}
+
+curl --location 'http://localhost:5757/api/comment/add' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2ZmNzk3MjRlYjE0YTA3YzE0ZWUiLCJpYXQiOjE3MTExMDgyMzMsImV4cCI6MTcxMTcxMzAzM30.ENAsLwrNMZvTsc3ggTV9lTN-YkyXKhIv7QtSeA_CuQI' \
+--data '{
+    "postId" : "65fd3dc59724eb14a07c14db",
+    "text" :"comment on the post"
+}'
