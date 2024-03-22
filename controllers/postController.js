@@ -196,10 +196,10 @@ export const deletePost = async (req, res) => {
         if (postToDelete.user.toString() !== req.user._id.toString()) {
             return res.status(403).json({
                 success: false,
-                message: 'You are not authorized to delete this post',
+                message: 'You are not authorized to delete this post, Owner can delete post',
             });
         }
-        
+
         //finding the user associated with this post
         const user = await UserModel.findById(postToDelete.user)
         if (!user) {
@@ -228,3 +228,5 @@ export const deletePost = async (req, res) => {
 
     }
 }
+
+
