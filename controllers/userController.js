@@ -397,7 +397,7 @@ export const uploadProfilePicture = async (req, res) => {
         const user = await UserModel.findByIdAndUpdate(_id, { profilePicture: generateFileUrl(filename) }, { new: true })
 
         if (!user) {
-            handleValidationError(res, 'User not found', 404);
+           return handleValidationError(res, 'User not found', 404);
         }
 
         res.status(200).json({
@@ -424,7 +424,7 @@ export const uploadProfileCoverPicture = async (req, res) => {
         const user = await UserModel.findByIdAndUpdate(_id, { coverPicture: generateFileUrl(filename) }, { new: true })
 
         if (!user) {
-            handleValidationError(res, 'User not found', 404);
+           return handleValidationError(res, 'User not found', 404);
         }
 
         res.status(200).json({

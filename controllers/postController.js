@@ -69,6 +69,8 @@ export const createPostWithImages = async (req, res) => {
         // pushing the posts to the user posts array
         user.posts.push(newPost._id)
 
+        //saving the user
+        await user.save()
         res.status(201).json({
             success: true,
             message: "Post created successfully along with images",
@@ -94,19 +96,18 @@ export const updatePost = async (req, res) => {
         const { caption } = req.body;
 
         const postToUpdate = await PostModel.findById(postId)
-        if(!postToUpdate){
-            return handleValidationError(res , "Post not found" , 404)
+        if (!postToUpdate) {
+            return handleValidationError(res, "Post not found", 404)
         }
 
-        // if caption is falsy (such as null, undefined, or an empty string), it keeps the existing value of postToUpdate.caption.
-        postToUpdate.caption = caption || postToUpdate.caption
+        const updatedPost = await PostModel.findByIdAndUpdate(postId , {caption} , {new : true})
         await postToUpdate.save()
 
 
         res.status(201).json({
             success: true,
             message: "Post caption updated successfully",
-            post: postToUpdate
+            post: updatedPost
         })
 
 
@@ -126,15 +127,15 @@ export const getAllPosts = async (req, res) => {
 
         const user = await UserModel.findById(req.params.userId)
         console.log(user);
-        if(!user){
-            return handleValidationError(res, 'User not found' , 404);
+        if (!user) {
+            return handleValidationError(res, 'User not found', 404);
         }
 
         // finding the block users by Id(we dont want to show to block users)
         const blockUsersIds = user.blockList.map(id => id.toString())
 
         // showing the posts excluding with block users
-        const allPosts = await PostModel.find({user : {$nin : blockUsersIds}}).populate("user" , "userName fullName profilePicture")
+        const allPosts = await PostModel.find({ user: { $nin: blockUsersIds } }).populate("user", "userName fullName profilePicture")
 
         res.status(201).json({
             success: true,
@@ -154,21 +155,60 @@ export const getAllPosts = async (req, res) => {
 
 
 
-export const getUserPosts = async (req, res) =>{
+export const getUserPosts = async (req, res) => {
     try {
 
         const user = await UserModel.findById(req.user._id)
 
-        if(!user){
-            return handleValidationError(res, 'User not found' , 404);
+        if (!user) {
+            return handleValidationError(res, 'User not found', 404);
         }
 
-        const userPosts = await PostModel.find({user : req.user._id})
+        const userPosts = await PostModel.find({ user: req.user._id })
 
         res.status(201).json({
             success: true,
             message: "Post fetched successfully",
             post: userPosts
+        })
+
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while getting user posts', error, 500);
+
+    }
+}
+
+
+export const deletePost = async (req, res) => {
+    try {
+
+        const { postId } = req.params
+        const postToDelete = await PostModel.findById(postId)
+        if (!postToDelete) {
+            return handleValidationError(res, 'Post not found', 404);
+        }
+
+        //finding the user associated with this post
+        const user = await UserModel.findById(postToDelete.user)
+        if (!user) {
+            return handleValidationError(res, 'User not found', 404);
+        }
+
+        console.log(user);
+        // deleting the posts from the user posts
+        user.posts = user.posts.filter(postId => postId.toString() !== postToDelete._id.toString())
+        console.log(user.posts);
+
+        await user.save()
+        await postToDelete.deleteOne()
+
+        res.status(201).json({
+            success: true,
+            message: "Post deleted successfully",
         })
 
 
