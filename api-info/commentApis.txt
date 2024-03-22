@@ -15,3 +15,19 @@ curl --location 'http://localhost:5757/api/comment/add' \
     "postId" : "65fd3dc59724eb14a07c14db",
     "text" :"comment on the post"
 }'
+
+
+REPLY ON COMMENT
+POST ==>  http://localhost:5757/api/comment/add/reply/65fdbee5285d6e7af0da7f86
+            /commentId
+
+{
+    "text" : "reply on comment"
+}
+
+curl --location 'http://localhost:5757/api/comment/add/reply/65fdbee5285d6e7af0da7f86' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2ZmNzk3MjRlYjE0YTA3YzE0ZWUiLCJpYXQiOjE3MTExMDgyMzMsImV4cCI6MTcxMTcxMzAzM30.ENAsLwrNMZvTsc3ggTV9lTN-YkyXKhIv7QtSeA_CuQI' \
+--data '{
+    "text" : "reply on comment"
+}'

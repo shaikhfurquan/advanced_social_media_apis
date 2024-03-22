@@ -13,19 +13,19 @@ export const createComment = async (req, res) => {
 
         //finding the post
         const post = await PostModel.findById(postId)
-        if(!post){
-            return handleValidationError(res, "Post not found" , 404)
+        if (!post) {
+            return handleValidationError(res, "Post not found", 404)
         }
 
         //finding user
         const user = await UserModel.findById(userId)
-        if(!user){
-            return handleValidationError(res, "User not found" , 404)
+        if (!user) {
+            return handleValidationError(res, "User not found", 404)
         }
 
         const newComment = await CommentModel.create({
-            user : userId,
-            post : postId,
+            user: userId,
+            post: postId,
             text
         })
 
@@ -36,7 +36,50 @@ export const createComment = async (req, res) => {
         res.status(200).json({
             success: true,
             message: "Comment added successfully",
-            comment : newComment
+            comment: newComment
+        })
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while creating the comment', error, 500);
+
+    }
+}
+
+
+
+export const createCommentReply = async (req, res) => {
+    try {
+
+        const { commentId } = req.params
+        const userId = req.user._id
+        const { text } = req.body
+
+        //finding the parent comment
+        const parentComment = await CommentModel.findById(commentId)
+        if (!parentComment) {
+            return handleValidationError(res, 'Parent Comment not found', 404)
+        }
+
+        //finding user
+        const user = await UserModel.findById(userId)
+        if (!user) {
+            return handleValidationError(res, "User not found", 404)
+        }
+
+        const reply = {
+            text: text,
+            user: userId
+        }
+        parentComment.replies.push(reply)
+        await parentComment.save()
+
+        res.status(200).json({
+            success: true,
+            message: "Reply on Comment added successfully",
+            reply: reply
         })
 
     } catch (error) {
