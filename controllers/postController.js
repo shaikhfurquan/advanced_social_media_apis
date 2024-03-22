@@ -100,11 +100,11 @@ export const updatePost = async (req, res) => {
             return handleValidationError(res, "Post not found", 404)
         }
 
-        const updatedPost = await PostModel.findByIdAndUpdate(postId , {caption} , {new : true})
+        const updatedPost = await PostModel.findByIdAndUpdate(postId, { caption }, { new: true })
         await postToUpdate.save()
 
 
-        res.status(201).json({
+        res.status(200).json({
             success: true,
             message: "Post caption updated successfully",
             post: updatedPost
@@ -137,7 +137,7 @@ export const getAllPosts = async (req, res) => {
         // showing the posts excluding with block users
         const allPosts = await PostModel.find({ user: { $nin: blockUsersIds } }).populate("user", "userName fullName profilePicture")
 
-        res.status(201).json({
+        res.status(200).json({
             success: true,
             message: "Post fetched successfully",
             post: allPosts
@@ -166,7 +166,7 @@ export const getUserPosts = async (req, res) => {
 
         const userPosts = await PostModel.find({ user: req.user._id })
 
-        res.status(201).json({
+        res.status(200).json({
             success: true,
             message: "Post fetched successfully",
             post: userPosts
@@ -191,7 +191,7 @@ export const deletePost = async (req, res) => {
         if (!postToDelete) {
             return handleValidationError(res, 'Post not found', 404);
         }
-    
+
         // Verify if the authenticated user is the owner of the post
         if (postToDelete.user.toString() !== req.user._id.toString()) {
             return res.status(403).json({
@@ -214,7 +214,7 @@ export const deletePost = async (req, res) => {
         await user.save()
         await postToDelete.deleteOne()
 
-        res.status(201).json({
+        res.status(200).json({
             success: true,
             message: "Post deleted successfully",
         })
@@ -224,9 +224,53 @@ export const deletePost = async (req, res) => {
         if (error.name === 'CastError') {
             return handleCastError(res, 'Invalid Id');
         }
-        handleCatchError(res, 'Error while getting user posts', error, 500);
+        handleCatchError(res, 'Error while deleting user posts', error, 500);
 
     }
 }
 
 
+export const likePost = async (req, res) => {
+    try {
+
+        const { postId } = req.params
+        const userId = req.user._id
+        
+
+        //findinbg the post
+        const post = await PostModel.findById(postId)
+        if(!post) {
+            return handleValidationError(res , "Post not found" , 404);
+        }
+
+        //finding the user
+        const user = await UserModel.findById(userId)
+        if(!user){
+            return handleValidationError(res, "User not found" , 404);
+        }
+
+        // checking whether the post is already like or not in the post like(array)
+        if(post.likes.includes(userId)){
+            return handleValidationError(res , "User already like this post" , 409);
+        }
+
+        // if user not like the post then
+        post.likes.push(userId);
+        await post.save();
+
+
+        res.status(200).json({
+            success: true,
+            message: "Like the post successfully",
+            post: post
+        })
+
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while like post', error, 500);
+
+    }
+}

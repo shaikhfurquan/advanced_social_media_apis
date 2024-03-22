@@ -68,3 +68,11 @@ DELETE ==> http://localhost:5757/api/post/delete/65fc93a4a7d9800167081fc5
 
 curl --location --request DELETE 'http://localhost:5757/api/post/delete/65fc93a4a7d9800167081fc5' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDRhZGQ4ODkxNWE3NjFiMzMxYTIiLCJpYXQiOjE3MTEwOTA5NzMsImV4cCI6MTcxMTY5NTc3M30.duVNym1jGn1796-ClJhWuwx2O-ZvzN9mWvjPsQQe8-A'
+
+
+
+LIKE POST
+POST ==>  http://localhost:5757/api/post/like/65fd3dc59724eb14a07c14db
+
+curl --location --request POST 'http://localhost:5757/api/post/like/65fd3dc59724eb14a07c14db' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2ZmNzk3MjRlYjE0YTA3YzE0ZWUiLCJpYXQiOjE3MTExMDgyMzMsImV4cCI6MTcxMTcxMzAzM30.ENAsLwrNMZvTsc3ggTV9lTN-YkyXKhIv7QtSeA_CuQI'
