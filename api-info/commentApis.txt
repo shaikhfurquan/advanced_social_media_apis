@@ -87,3 +87,12 @@ POST ==>  http://localhost:5757/api/comment/like/65ff235f42a6275f9fc4f1bf
 
 curl --location --request POST 'http://localhost:5757/api/comment/like/65ff235f42a6275f9fc4f1bf' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2QwOTNhYjVkZmFhNWZiNWQ2ODMiLCJpYXQiOjE3MTEyMjA5NDEsImV4cCI6MTcxMTgyNTc0MX0.-xcqphUtG7xDH5MyFGlxatX_A3iZK03lFWMkqNMJ6tc'
+
+
+
+UN-LIKE COMMENT
+POST ==>  http://localhost:5757/api/comment/un-like/65ff235f42a6275f9fc4f1bf
+                                   /un-like/:commentId
+
+curl --location --request POST 'http://localhost:5757/api/comment/un-like/65ff235f42a6275f9fc4f1bf' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2RmNDk3MjRlYjE0YTA3YzE0ZTMiLCJpYXQiOjE3MTEyMjE3ODUsImV4cCI6MTcxMTgyNjU4NX0.MAi8isjjK7zUlPdXz_Ej2INTkhrQi0vZaNYdf_SgL7I'
