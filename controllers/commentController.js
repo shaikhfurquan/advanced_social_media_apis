@@ -127,3 +127,47 @@ export const updateComment = async (req, res) => {
         handleCatchError(res, 'Error while updating the comment', error, 500);
     }
 };
+
+
+export const updateReplyComment = async (req, res) => {
+    try {
+        const { commentId, replyId } = req.params;
+        const userId = req.user._id;
+        const { text } = req.body;
+
+        // Find the comment
+        const parentComment = await CommentModel.findById(commentId);
+        if (!parentComment) {
+            return handleValidationError(res, 'Comment not found', 404);
+        }
+
+
+        //getting replies array(index)
+        const replyIndex = parentComment.replies.findIndex((reply) => reply._id.toString() === replyId)
+        console.log(replyIndex);
+
+        if (replyIndex === -1) {
+            return handleValidationError(res, 'Reply comment not found', 404);
+        }
+
+        //validating the user
+        if (parentComment.replies[replyIndex].user.toString() !== userId) {
+            return handleValidationError(res, "you are not allowed to update this comment", 400)
+        }
+
+        parentComment.replies[replyIndex].text = text
+        await parentComment.save()
+
+        res.status(200).json({
+            success: true,
+            message: 'Reply Comment updated successfully',
+            parentComment: parentComment
+        });
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while updating the reply on comment', error, 500);
+    }
+};

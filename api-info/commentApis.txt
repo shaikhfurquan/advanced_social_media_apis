@@ -19,7 +19,7 @@ curl --location 'http://localhost:5757/api/comment/add' \
 
 REPLY ON COMMENT
 POST ==>  http://localhost:5757/api/comment/add/reply/65fdbee5285d6e7af0da7f86
-            /commentId
+                                           /add/reply/:commentId
 
 {
     "text" : "reply on comment"
@@ -36,7 +36,7 @@ curl --location 'http://localhost:5757/api/comment/add/reply/65fdbee5285d6e7af0d
 
 UPDATE COMMENT
 PUT ==>  http://localhost:5757/api/comment/update/65fdbee5285d6e7af0da7f86
-        /commentId
+                                          /update/:commentId
 
 curl --location --request PUT 'http://localhost:5757/api/comment/update/65fdbee5285d6e7af0da7f86' \
 --header 'Content-Type: application/json' \
@@ -44,3 +44,9 @@ curl --location --request PUT 'http://localhost:5757/api/comment/update/65fdbee5
 --data '{
  "text" : "mk comment"   
 }'
+
+
+
+UPDATE REPLY COMMENT
+PUT ==>  http://localhost:5757/api/comment/update/65fdbee5285d6e7af0da7f86/replies/65fdc6fcce0afb51aa2bbfb5
+/commentId/replyId                        /update/:commentId/replies/:replyId
