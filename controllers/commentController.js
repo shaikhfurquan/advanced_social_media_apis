@@ -177,7 +177,7 @@ export const updateReplyComment = async (req, res) => {
 const pupulateUserDetails = async (comments) => {
     // Also populate the reqply comments
     for (const comment of comments) {
-        console.log('comment==>' , comment);
+        console.log('comment==>', comment);
         await comment.populate("user", "userName fullName profilePicture")
         if (comment.replies.length > 0) {
             await comment.populate("replies.user", "userName fullName profilePicture")
@@ -200,7 +200,7 @@ export const getAllCommentOnPost = async (req, res) => {
         res.status(200).json({
             success: true,
             message: 'Comments fetched successfully',
-            commentsOnPost : commentsOnPost
+            commentsOnPost: commentsOnPost
         });
 
     } catch (error) {
@@ -208,5 +208,44 @@ export const getAllCommentOnPost = async (req, res) => {
             return handleCastError(res, 'Invalid Id');
         }
         handleCatchError(res, 'Error while updating the reply on comment', error, 500);
+    }
+}
+
+
+export const deleteComment = async (req, res) => {
+    try {
+        const { commentId } = req.params
+        const userId = req.user._id
+
+        const comment = await CommentModel.findById(commentId)
+        if (!comment) {
+            return handleValidationError(res, 'Comment not found', 404)
+        }
+
+        // Verify if the authenticated user is the owner of the comment
+        if (comment.user.toString() !== userId) {
+            return res.status(403).json({
+                success: false,
+                message: 'You are not authorized to delete this comment, Owner only',
+            });
+        }
+        // console.log(comment.user, userId);
+        await PostModel.findOneAndUpdate(
+            { comments: commentId },
+            { $pull: { comments: commentId } },
+            { new: true }
+        )
+        await CommentModel.deleteOne()
+
+        res.status(200).json({
+            success: true,
+            message: 'Comments deleted successfully',
+        });
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while deleting the comment', error, 500);
     }
 }
