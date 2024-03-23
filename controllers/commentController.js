@@ -288,3 +288,36 @@ export const deleteReplyComment = async (req, res) => {
         handleCatchError(res, 'Error while deleting the reply comment', error, 500);
     }
 }
+
+
+export const likeComment = async (req, res) => {
+    try {
+        const { commentId } = req.params
+        const userId = req.user._id
+
+        const comment = await CommentModel.findById(commentId)
+        if (!comment) {
+            return handleValidationError(res, 'Comment not found', 404)
+        }
+        
+        // check if the comment has already been liked by the user
+        if(comment.likes.includes(userId)){
+            handleValidationError(res, 'You have already liked that comment' , 400)
+        }
+
+        comment.likes.push(userId)
+        await comment.save()
+
+        res.status(200).json({
+            success: true,
+            message: 'Comment liked successfully',
+            comment : comment
+        });
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while like comment', error, 500);
+    }
+}
