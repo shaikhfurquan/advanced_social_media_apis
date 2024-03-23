@@ -105,3 +105,12 @@ POST ==> http://localhost:5757/api/comment/65ff235f42a6275f9fc4f1bf/reply/like/6
 
 curl --location --request POST 'http://localhost:5757/api/comment/65ff235f42a6275f9fc4f1bf/reply/like/65ff36beaf412713420b820e' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2RmNDk3MjRlYjE0YTA3YzE0ZTMiLCJpYXQiOjE3MTEyMjUzMzUsImV4cCI6MTcxMTgzMDEzNX0.jm0BBJcdAV3gtjb5Hsn_Z_Jev_5cgmbhIARYFMo2L5A'
+
+
+
+UN-LIKE REPLY COMMENT
+POST ==>  http://localhost:5757/api/comment/65ff235f42a6275f9fc4f1bf/reply/un-like/65ff36beaf412713420b820e
+                                   /:commentId/reply/un-like/:replyId
+
+curl --location --request POST 'http://localhost:5757/api/comment/65ff235f42a6275f9fc4f1bf/reply/un-like/65ff36beaf412713420b820e' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2RmNDk3MjRlYjE0YTA3YzE0ZTMiLCJpYXQiOjE3MTEyMjYxNzgsImV4cCI6MTcxMTgzMDk3OH0.S19BKOp0DbgNJOGTSTOrKK2AOqPTVpHTAfYbUP9uLs8'

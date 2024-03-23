@@ -1,7 +1,7 @@
 
 import express from 'express'
 import { isAuthenticated } from '../middlewares/isAuthenticate.js'
-import { createComment, createCommentReply, deleteComment, deleteReplyComment, getAllCommentOnPost, likeComment, likeReplyComment, unlikeComment, updateComment, updateReplyComment } from '../controllers/commentController.js'
+import { createComment, createCommentReply, deleteComment, deleteReplyComment, getAllCommentOnPost, likeComment, likeReplyComment, unlikeComment, unlikeReplyComment, updateComment, updateReplyComment } from '../controllers/commentController.js'
 
 const commentRouter = express.Router()
 
@@ -34,4 +34,7 @@ commentRouter.post('/un-like/:commentId' , isAuthenticated, unlikeComment)
 
 //like reply comment on post
 commentRouter.post('/:commentId/reply/like/:replyId' , isAuthenticated, likeReplyComment)
+
+//un-like reply comment on post
+commentRouter.post('/:commentId/reply/un-like/:replyId' , isAuthenticated, unlikeReplyComment)
 export default commentRouter

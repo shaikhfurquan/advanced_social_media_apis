@@ -399,3 +399,48 @@ export const likeReplyComment = async (req, res) => {
         handleCatchError(res, 'Error while like reply comment', error, 500);
     }
 }
+
+
+export const unlikeReplyComment = async (req, res) => {
+    try {
+        const { commentId, replyId } = req.params
+        const userId = req.user._id
+
+        const parentComment = await CommentModel.findById(commentId)
+        if (!parentComment) {
+            return handleValidationError(res, 'Comment not found', 404)
+        }
+
+        const replyComment = parentComment.replies.id(replyId)
+        if (!replyComment) {
+            return handleValidationError(res, 'Comment not found', 404)
+        }
+
+           // Verify if the authenticated user is the owner of the reply comment
+           if (replyComment.user.toString() !== userId) {
+            return res.status(403).json({
+                success: false,
+                message: 'You are not authorized to unlike this reply comment, Owner only',
+            });
+        }
+        
+        // check if the reply comment is already like
+        if (!replyComment.likes.includes(userId)) {
+            return handleValidationError(res, 'Comment have not liked reply comment', 400)
+        }
+
+        replyComment.likes = replyComment.likes.filter(id => id.toString() !== userId)
+        await parentComment.save()
+        res.status(200).json({
+            success: true,
+            message: 'Reply Comment un-liked successfully',
+            comment: parentComment
+        });
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while un-like reply comment', error, 500);
+    }
+}
