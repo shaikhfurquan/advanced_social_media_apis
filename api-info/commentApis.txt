@@ -50,3 +50,13 @@ curl --location --request PUT 'http://localhost:5757/api/comment/update/65fdbee5
 UPDATE REPLY COMMENT
 PUT ==>  http://localhost:5757/api/comment/update/65fdbee5285d6e7af0da7f86/replies/65fdc6fcce0afb51aa2bbfb5
 /commentId/replyId                        /update/:commentId/replies/:replyId
+
+
+
+GET COMMENT ON POST
+GET ==>  http://localhost:5757/api/comment/post/65fd3dc59724eb14a07c14db
+                                          /post/:postId
+
+
+curl --location 'http://localhost:5757/api/comment/post/65fd3dc59724eb14a07c14db' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2RmNDk3MjRlYjE0YTA3YzE0ZTMiLCJpYXQiOjE3MTExODM5NDcsImV4cCI6MTcxMTc4ODc0N30.rQDs02PPzlVI6MBYGJozgOfHH0CJtCkQWkt_GM5DusI'

@@ -1,7 +1,7 @@
 
 import express from 'express'
 import { isAuthenticated } from '../middlewares/isAuthenticate.js'
-import { createComment, createCommentReply, updateComment, updateReplyComment } from '../controllers/commentController.js'
+import { createComment, createCommentReply, getAllCommentOnPost, updateComment, updateReplyComment } from '../controllers/commentController.js'
 
 const commentRouter = express.Router()
 
@@ -19,5 +19,10 @@ commentRouter.put('/update/:commentId' , isAuthenticated , updateComment)
 
 // update reply comment
 commentRouter.put('/update/:commentId/replies/:replyId' , isAuthenticated , updateReplyComment)
+
+
+// get all comment on post
+commentRouter.get('/post/:postId' , isAuthenticated , getAllCommentOnPost)
+
 
 export default commentRouter
