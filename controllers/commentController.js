@@ -249,3 +249,42 @@ export const deleteComment = async (req, res) => {
         handleCatchError(res, 'Error while deleting the comment', error, 500);
     }
 }
+
+
+export const deleteReplyComment = async (req, res) => {
+    try {
+        const { commentId, replyId } = req.params
+        const userId = req.user._id
+
+        const comment = await CommentModel.findById(commentId)
+        if (!comment) {
+            return handleValidationError(res, 'Comment not found', 404)
+        }
+
+        // Verify if the authenticated user is the owner of any reply within the comment
+        const isOwner = comment.replies.some(reply => reply.user.toString() === userId);
+        if (!isOwner) {
+            return res.status(403).json({
+                success: false,
+                message: 'You are not authorized to delete this comment, Owner only',
+            });
+        }
+
+
+        comment.replies = comment.replies.filter(id => {
+            id.toString() !== replyId
+        })
+        await comment.save()
+
+        res.status(200).json({
+            success: true,
+            message: 'Reply Comment deleted successfully',
+        });
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while deleting the reply comment', error, 500);
+    }
+}

@@ -69,3 +69,12 @@ DELETE ==>  http://localhost:5757/api/comment/delete/65fdd40fb0ebc6ad8d6bb4b4
 
 curl --location --request DELETE 'http://localhost:5757/api/comment/delete/65fdd40fb0ebc6ad8d6bb4b4' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2RmNDk3MjRlYjE0YTA3YzE0ZTMiLCJpYXQiOjE3MTExODM5NDcsImV4cCI6MTcxMTc4ODc0N30.rQDs02PPzlVI6MBYGJozgOfHH0CJtCkQWkt_GM5DusI'                                            
+
+
+
+DELETE REPLY COMMENT
+DELETE ==>  http://localhost:5757/api/comment/delete/65ff235f42a6275f9fc4f1bf/reply/65ff239642a6275f9fc4f1c4
+                                             /delete/:commentId/reply/:replyId
+
+curl --location --request DELETE 'http://localhost:5757/api/comment/delete/65ff235f42a6275f9fc4f1bf/reply/65ff239642a6275f9fc4f1c4' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2RmNDk3MjRlYjE0YTA3YzE0ZTMiLCJpYXQiOjE3MTEyMjAwMzAsImV4cCI6MTcxMTgyNDgzMH0.-99ublGORfPgURSPrKo4Iz65kMrmJL14PPY6y_ozwR4'                                            
