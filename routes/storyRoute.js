@@ -1,7 +1,7 @@
 import express  from "express";
 import { isAuthenticated } from '../middlewares/isAuthenticate.js'
 import upload from '../middlewares/upload.js';
-import { createStory, deleteStory, getAllStory, getUserStory } from "../controllers/storyController.js";
+import { createStory, deleteAllStories, deleteStory, getAllStory, getUserStory } from "../controllers/storyController.js";
 
 
 
@@ -16,6 +16,9 @@ storyRouter.get('/get/all' , isAuthenticated , getAllStory)
 // get other user story
 storyRouter.get('/get/user-story/:userId' , isAuthenticated , getUserStory)
 
-//delete story
-storyRouter.delete('/delete/:storyId' , isAuthenticated , deleteStory)
+//delete current user story
+// storyRouter.delete('/delete/:storyId' , isAuthenticated , deleteStory)
+
+//delete all current user story
+storyRouter.delete('/delete/all-stories' , isAuthenticated , deleteAllStories)
 export default storyRouter

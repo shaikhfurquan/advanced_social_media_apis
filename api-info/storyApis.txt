@@ -39,3 +39,10 @@ DLETE ==> http://localhost:5757/api/story/delete/66000f4155a51d086a73ab5f
 curl --location --request DELETE 'http://localhost:5757/api/story/delete/66000f4155a51d086a73ab5f' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2RmNDk3MjRlYjE0YTA3YzE0ZTMiLCJpYXQiOjE3MTEzMDg5MDMsImV4cCI6MTcxMTkxMzcwM30.IQHpKYWHlC2Gc-waV_-kl-fhX1Y2Zcq-PTZJtEG6nTU'
 
+
+
+DELETE ALL STORIES
+DELETE ==>  http://localhost:5757/api/story/delete/all-stories
+
+curl --location --request DELETE 'http://localhost:5757/api/story/delete/all-stories' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2QwOTNhYjVkZmFhNWZiNWQ2ODMiLCJpYXQiOjE3MTEzMTE3MzksImV4cCI6MTcxMTkxNjUzOX0.lSgvci1RJUKAfRmuR042bAYwJgnpVYBDOYGs-RelvBQ'

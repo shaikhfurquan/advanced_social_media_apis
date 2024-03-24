@@ -127,8 +127,47 @@ export const deleteStory = async (req, res) => {
         })
     } catch (error) {
         if (error.name === 'CastError') {
-            return handleCastError(res, 'Invalid Id');
+            return handleCastError(res, 'Invalid Id.............');
         }
         handleCatchError(res, 'Error while deleting the story', error, 500);
+    }
+}
+
+
+export const deleteAllStories = async (req, res) => {
+    try {
+        const userId = req.user._id
+        const user = await UserModel.findById(userId)
+
+        if (!user) {
+            return handleValidationError(res, "User not found", 404)
+        }
+
+         // Verify if the authenticated user is the owner of the stories
+         if (user._id.toString() !== userId) {
+            return res.status(403).json({
+                success: false,
+                message: "You are not authorized to delete all stories. Owner only.",
+            });
+        }
+        
+        const deleteResult = await StoryModel.deleteMany({ user: userId })
+
+        if (deleteResult.deletedCount === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No stories found to delete.",
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "All Stories deleted successfully",
+        })
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id...');
+        }
+        handleCatchError(res, 'Error while deleting all the story', error, 500);
     }
 }
