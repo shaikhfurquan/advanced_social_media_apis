@@ -1,0 +1,12 @@
+
+STORY APIS
+
+CREATE STORTY
+POST ==> http://localhost:5757/api/story/create
+            text : "Hello"
+            image : select image
+
+curl --location 'http://localhost:5757/api/story/create' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2RmNDk3MjRlYjE0YTA3YzE0ZTMiLCJpYXQiOjE3MTEyMjYxNzgsImV4cCI6MTcxMTgzMDk3OH0.S19BKOp0DbgNJOGTSTOrKK2AOqPTVpHTAfYbUP9uLs8' \
+--form 'text="my first story text"' \
+--form 'image=@"/G:/Desktop Wallpaper/359695.jpg"'
