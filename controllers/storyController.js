@@ -36,6 +36,35 @@ export const createStory =async (req, res) => {
         if (error.name === 'CastError') {
             return handleCastError(res, 'Invalid Id');
         }
-        handleCatchError(res, 'Error while creating the post', error, 500);
+        handleCatchError(res, 'Error while creating the story', error, 500);
     }
 }
+
+//current user
+export const getAllStory =async (req, res) => {
+    try {
+        const userId = req.user._id
+        
+
+        const user = await UserModel.findById(userId)
+        if(!user) {
+            return handleValidationError(res , "User not found" , 404) 
+        }
+        
+        // taking the story of those users that whom the user is follwing
+        const followingUsers = user.following
+        const stories = await StoryModel.find({user : {$in : followingUsers}}).populate("user" , "fullName userName userName profilePicture")
+
+        res.status(200).json({
+            success : true,
+            message : "Story fetched successfully",
+            stories : stories
+        })
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while getting the story', error, 500);
+    }
+}
+
