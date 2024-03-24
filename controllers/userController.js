@@ -406,6 +406,9 @@ export const uploadProfilePicture = async (req, res) => {
             user: user
         })
     } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
         handleCatchError(res, 'Error while uploading profile picture', error, 500);
     }
 }
@@ -433,6 +436,9 @@ export const uploadProfileCoverPicture = async (req, res) => {
             user: user
         })
     } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
         handleCatchError(res, 'Error while uploading cover picture', error, 500);
     }
 }
