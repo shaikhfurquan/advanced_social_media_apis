@@ -20,3 +20,12 @@ curl --location --request GET 'http://localhost:5757/api/story/get/all' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2RmNDk3MjRlYjE0YTA3YzE0ZTMiLCJpYXQiOjE3MTEzMDYyMDIsImV4cCI6MTcxMTkxMTAwMn0.4JISZBFTQwU7zmOoiwgU1Xho-EHyWSBbE89D0sUwZjk' \
 --form 'text="my first sf story text"' \
 --form 'image=@"/G:/Desktop Wallpaper/359695.jpg"'
+
+
+
+GET USERS STORTY
+GET ==>  http://localhost:5757/api/story/get/user-story/65fd3d093ab5dfaa5fb5d683
+                                        get/user-story/:userId
+
+curl --location 'http://localhost:5757/api/story/get/user-story/65fd3d093ab5dfaa5fb5d683' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2RmNDk3MjRlYjE0YTA3YzE0ZTMiLCJpYXQiOjE3MTEzMDYyMDIsImV4cCI6MTcxMTkxMTAwMn0.4JISZBFTQwU7zmOoiwgU1Xho-EHyWSBbE89D0sUwZjk'

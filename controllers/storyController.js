@@ -68,3 +68,30 @@ export const getAllStory =async (req, res) => {
     }
 }
 
+//other user story
+export const getUserStory =async (req, res) => {
+    try {
+        const userId = req.params.userId
+        const user = await UserModel.findById(userId)
+
+        if(!user) {
+            return handleValidationError(res , "User not found" , 404) 
+        }
+        const story = await StoryModel.find({user : userId}).populate("user" , "fullName userName profilePicture")
+
+        if(!story) {
+            return handleValidationError(res , "Story not found" , 404) 
+        }
+
+        res.status(200).json({
+            success : true,
+            message : "Story fetched successfully",
+           story : story
+        })
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while getting the story', error, 500);
+    }
+}

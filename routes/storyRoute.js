@@ -1,7 +1,7 @@
 import express  from "express";
 import { isAuthenticated } from '../middlewares/isAuthenticate.js'
 import upload from '../middlewares/upload.js';
-import { createStory, getAllStory } from "../controllers/storyController.js";
+import { createStory, getAllStory, getUserStory } from "../controllers/storyController.js";
 
 
 
@@ -13,5 +13,6 @@ storyRouter.post('/create' , isAuthenticated ,upload.single("image")  , createSt
 // get current user all stories
 storyRouter.get('/get/all' , isAuthenticated , getAllStory)
 
-
+// get other user story
+storyRouter.get('/get/user-story/:userId' , isAuthenticated , getUserStory)
 export default storyRouter
