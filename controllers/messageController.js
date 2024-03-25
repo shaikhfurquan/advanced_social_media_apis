@@ -4,91 +4,45 @@ import ConversationModel from '../models/conversationModel.js'
 import { handleCastError, handleCatchError, handleValidationError } from "../helpers/handleError.js"
 
 
-export const createNewConversation = async (req, res) => {
+export const createMessage = async (req, res) => {
     try {
-       
-        res.status(200).json({
+        const newMessage = new MessageModel(req.body)
+        const savedMessage = await newMessage.save()
+
+        res.status(20).json({
             success: true,
-            message: "Conversation created successfully",
-            savedConversation: savedConversation
+            message: "Message created successfully",
+            savedMessage: savedMessage
         })
     } catch (error) {
         if (error.name === 'CastError') {
             return handleCastError(res, 'Invalid Id');
         }
-        handleCatchError(res, 'Error while creating the Conversation', error, 500);
+        handleCatchError(res, 'Error while creating the message', error, 500);
     }
 }
 
 
-export const getConversation = async (req, res) => {
+export const getMessage= async (req, res) => {
     try {
-        const conversations= await ConversationModel.find({
-            participants : {$in : [req.params.userId]}
-        })
-
-        if(!conversations){
-            return handleValidationError(res , "Conversation not found" , 404)
-        }
-
-        res.status(200).json({
-            success: true,
-            message: "Conversation fetched successfully",
-            conversations : conversations
-        })
-    } catch (error) {
-        if (error.name === 'CastError') {
-            return handleCastError(res, 'Invalid Id');
-        }
-        handleCatchError(res, 'Error while creating the Conversation', error, 500);
-    }
-}
-
-
-export const getTwoUserConversation = async (req, res) => {
-    try {
-        const conversations= await ConversationModel.find({
-            participants : {$all : [req.params.firstUserId , req.params.secondUserId]}
-        })
-
-        if(!conversations){
-            return handleValidationError(res , "Conversation not found" , 404)
-        }
         
+        const message = await MessageModel.find({
+            conversationId : req.params.conversationId
+        })
+        if(!message){
+            return handleValidationError(res , 'Message not found' ,404 )
+        }
+
         res.status(200).json({
             success: true,
-            message: "Conversation fetched successfully",
-            conversations : conversations
+            message: "Message fetched successfully",
+            message : message
         })
     } catch (error) {
         if (error.name === 'CastError') {
             return handleCastError(res, 'Invalid Id');
         }
-        handleCatchError(res, 'Error while creating the Conversation', error, 500);
-    }
-}
-
-
-export const deleteConversation = async (req, res) => {
-    try {
-        const conversationId = req.params.conversationId
-        const conversation = await ConversationModel.findById(conversationId)
-        if(!conversation){
-            return handleValidationError(res , 'conversation not found' , 404)
-        }
-
-        await ConversationModel.deleteOne({_id : conversationId})
-        await MessageModel.deleteMany({conversationId : conversationId})
-
-        res.status(200).json({
-            success: true,
-            message: "Conversation deleted successfully",
-        })
-    } catch (error) {
-        if (error.name === 'CastError') {
-            return handleCastError(res, 'Invalid Id');
-        }
-        handleCatchError(res, 'Error while deleting the Conversation', error, 500);
+        handleCatchError(res, 'Error while fetching the messsage', error, 500);
     }
 }
 

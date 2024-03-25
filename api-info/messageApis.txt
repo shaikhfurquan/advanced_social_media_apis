@@ -1,0 +1,32 @@
+
+MESSAGES APIS
+
+CREATE MESSAGE
+POST ==>  http://localhost:5757/api/message/create
+{
+    "conversationId" : "660130cb20cad9dec2c87b32",
+    "sender" : "65fd3d093ab5dfaa5fb5d683",
+    "text" : "Hi.."
+}
+
+curl --location 'http://localhost:5757/api/message/create' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2QwOTNhYjVkZmFhNWZiNWQ2ODMiLCJpYXQiOjE3MTEzMTE3MzksImV4cCI6MTcxMTkxNjUzOX0.lSgvci1RJUKAfRmuR042bAYwJgnpVYBDOYGs-RelvBQ' \
+--data '{
+    "conversationId" : "660130cb20cad9dec2c87b32",
+    "sender" : "65fd3d093ab5dfaa5fb5d683",
+    "text" : "Hi.."
+}'
+
+GET MESSAGE
+GET ==>  http://localhost:5757/api/message/get/660130cb20cad9dec2c87b32
+                                          /get/:conversationId
+
+curl --location --request GET 'http://localhost:5757/api/message/get/660130cb20cad9dec2c87b32' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2QwOTNhYjVkZmFhNWZiNWQ2ODMiLCJpYXQiOjE3MTEzMTE3MzksImV4cCI6MTcxMTkxNjUzOX0.lSgvci1RJUKAfRmuR042bAYwJgnpVYBDOYGs-RelvBQ; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2QwOTNhYjVkZmFhNWZiNWQ2ODMiLCJpYXQiOjE3MTEzMTE3MzksImV4cCI6MTcxMTkxNjUzOX0.lSgvci1RJUKAfRmuR042bAYwJgnpVYBDOYGs-RelvBQ' \
+--data '{
+    "conversationId" : "660130cb20cad9dec2c87b32",
+    "sender" : "65fd3d093ab5dfaa5fb5d683",
+    "text" : "Hi.."
+}'
