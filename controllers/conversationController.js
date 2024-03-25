@@ -31,3 +31,22 @@ export const createNewConversation = async (req, res) => {
     }
 }
 
+
+export const getConversation = async (req, res) => {
+    try {
+        const conversations= await ConversationModel.find({
+            participants : {$in : [req.params.userId]}
+        })
+        res.status(200).json({
+            success: true,
+            message: "Conversation fetched successfully",
+            conversations : conversations
+        })
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while creating the Conversation', error, 500);
+    }
+}
+
