@@ -11,6 +11,7 @@ import userRouter from './routes/userRoute.js';
 import postRouter from './routes/postRoute.js';
 import commentRouter from './routes/commentRoute.js';
 import storyRouter from './routes/storyRoute.js';
+import conversationRouter from './routes/conversationRoute.js';
 
 dotenv.config()
 
@@ -36,6 +37,7 @@ app.use('/api/user' , userRouter)
 app.use('/api/post' , postRouter)
 app.use('/api/comment' , commentRouter)
 app.use('/api/story' , storyRouter)
+app.use('/api/conversation' , conversationRouter)
 
 //db connection
 connectDB()

@@ -17,7 +17,7 @@ storyRouter.get('/get/all' , isAuthenticated , getAllStory)
 storyRouter.get('/get/user-story/:userId' , isAuthenticated , getUserStory)
 
 //delete current user story
-// storyRouter.delete('/delete/:storyId' , isAuthenticated , deleteStory)
+storyRouter.delete('/delete/:storyId' , isAuthenticated , deleteStory)
 
 //delete all current user story
 storyRouter.delete('/delete/all-stories' , isAuthenticated , deleteAllStories)

@@ -143,14 +143,14 @@ export const deleteAllStories = async (req, res) => {
             return handleValidationError(res, "User not found", 404)
         }
 
-         // Verify if the authenticated user is the owner of the stories
-         if (user._id.toString() !== userId) {
+        // Verify if the authenticated user is the owner of the stories
+        if (user._id.toString() !== userId) {
             return res.status(403).json({
                 success: false,
                 message: "You are not authorized to delete all stories. Owner only.",
             });
         }
-        
+
         const deleteResult = await StoryModel.deleteMany({ user: userId })
 
         if (deleteResult.deletedCount === 0) {
