@@ -37,6 +37,11 @@ export const getConversation = async (req, res) => {
         const conversations= await ConversationModel.find({
             participants : {$in : [req.params.userId]}
         })
+
+        if(!conversations){
+            return handleValidationError(res , "Conversation not found" , 404)
+        }
+
         res.status(200).json({
             success: true,
             message: "Conversation fetched successfully",
@@ -49,4 +54,31 @@ export const getConversation = async (req, res) => {
         handleCatchError(res, 'Error while creating the Conversation', error, 500);
     }
 }
+
+
+export const getTwoUserConversation = async (req, res) => {
+    try {
+        const conversations= await ConversationModel.find({
+            participants : {$all : [req.params.firstUserId , req.params.secondUserId]}
+        })
+
+        if(!conversations){
+            return handleValidationError(res , "Conversation not found" , 404)
+        }
+        
+        res.status(200).json({
+            success: true,
+            message: "Conversation fetched successfully",
+            conversations : conversations
+        })
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while creating the Conversation', error, 500);
+    }
+}
+
+
+
 
