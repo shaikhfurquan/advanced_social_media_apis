@@ -31,3 +31,11 @@ GET ==>  http://localhost:5757/api/conversation/get/65fd3d093ab5dfaa5fb5d683/65f
 
 curl --location 'http://localhost:5757/api/conversation/get/65fd3d093ab5dfaa5fb5d683/65fd3df49724eb14a07c14e3' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2QwOTNhYjVkZmFhNWZiNWQ2ODMiLCJpYXQiOjE3MTEzMTE3MzksImV4cCI6MTcxMTkxNjUzOX0.lSgvci1RJUKAfRmuR042bAYwJgnpVYBDOYGs-RelvBQ'
+
+
+DELETE CONVERSATION
+DELETE ==>  http://localhost:5757/api/conversation/delete/66012e44ac565cdd1503ab36
+                                                  /delete/:conversationId
+
+curl --location --request DELETE 'http://localhost:5757/api/conversation/delete/66012e44ac565cdd1503ab36' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2QwOTNhYjVkZmFhNWZiNWQ2ODMiLCJpYXQiOjE3MTEzMTE3MzksImV4cCI6MTcxMTkxNjUzOX0.lSgvci1RJUKAfRmuR042bAYwJgnpVYBDOYGs-RelvBQ'                                                  

@@ -1,6 +1,6 @@
 import express  from "express";
 import { isAuthenticated } from '../middlewares/isAuthenticate.js'
-import { createNewConversation, getConversation, getTwoUserConversation } from "../controllers/conversationController.js";
+import { createNewConversation, deleteConversation, getConversation, getTwoUserConversation } from "../controllers/conversationController.js";
 
 const conversationRouter = express.Router();
 
@@ -12,6 +12,9 @@ conversationRouter.get('/get/:userId' , isAuthenticated , getConversation)
 
 // get two users conversation 
 conversationRouter.get('/get/:firstUserId/:secondUserId' , isAuthenticated , getTwoUserConversation)
+
+// delete users conversation 
+conversationRouter.delete('/delete/:conversationId' , isAuthenticated , deleteConversation)
 
 
 export default conversationRouter
