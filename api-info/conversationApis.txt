@@ -1,0 +1,18 @@
+CONVERSATION APIS
+
+CREATE CONVERSATION
+POST ==>  http://localhost:5757/api/conversation/create
+        
+{   
+    "firstUser" : "65fd3d093ab5dfaa5fb5d683", //LOGIN USER
+    "secondUser" : "65fd3df49724eb14a07c14e3"
+}
+
+curl --location 'http://localhost:5757/api/conversation/create' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2QwOTNhYjVkZmFhNWZiNWQ2ODMiLCJpYXQiOjE3MTEzMTE3MzksImV4cCI6MTcxMTkxNjUzOX0.lSgvci1RJUKAfRmuR042bAYwJgnpVYBDOYGs-RelvBQ' \
+--data '{
+    "firstUser" : "65fd3d093ab5dfaa5fb5d683",
+    "secondUser" : "65fd3df49724eb14a07c14e3"
+
+}'
