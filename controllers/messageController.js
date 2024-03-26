@@ -46,3 +46,24 @@ export const getMessage= async (req, res) => {
     }
 }
 
+
+export const deleteMessage = async (req, res) => {
+    try {
+        const message = await MessageModel.findById(req.params.messageId)
+        if(!message){
+            return handleValidationError(res , "Message not found" , 404)
+        }
+        await MessageModel.findByIdAndDelete(req.params.messageId)
+
+        res.status(200).json({
+            success: true,
+            message: "Message deleted successfully",
+        })
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id');
+        }
+        handleCatchError(res, 'Error while deleting the message', error, 500);
+    }
+}
+

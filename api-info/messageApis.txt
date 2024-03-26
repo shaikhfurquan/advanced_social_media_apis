@@ -18,6 +18,7 @@ curl --location 'http://localhost:5757/api/message/create' \
     "text" : "Hi.."
 }'
 
+
 GET MESSAGE
 GET ==>  http://localhost:5757/api/message/get/660130cb20cad9dec2c87b32
                                           /get/:conversationId
