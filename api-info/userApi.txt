@@ -110,12 +110,22 @@ curl --location --request POST 'http://localhost:5757/api/user/unfollow/65f6d4ad
 
 
 
+
+GET FOLLOWERS LISTS
+GET ==>  http://localhost:5757/api/user/get-followers-lists
+
+curl --location 'http://localhost:5757/api/user/get-followers-lists' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2QwOTNhYjVkZmFhNWZiNWQ2ODMiLCJpYXQiOjE3MTE0NDAwNTQsImV4cCI6MTcxMjA0NDg1NH0.XqtX7FRtcgQwX16Vc5k5YgawIlYAnTXlUQr97zfDarA'
+
+
+
 BLOCK USER
          (other userId which we want to block the user  ==> 65f6d4add88915a761b331a2)
 POST ==> http://localhost:5757/api/user/block/65f6d4add88915a761b331a2
 
 curl --location --request POST 'http://localhost:5757/api/user/block/65f6d4add88915a761b331a2' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY2ZDQxZGQzNjEyMGQ5ZDI5YWE4NTMiLCJpYXQiOjE3MTA4MzQ4NTgsImV4cCI6MTcxMTQzOTY1OH0.QCF7Y1yWxiMa_iK8bDc-j17uqmpNPCCZYWMjImACKOM'
+
 
 
 UN-BLOCK USER

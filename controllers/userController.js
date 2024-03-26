@@ -97,7 +97,6 @@ export const followUser = async (req, res) => {
         }
         handleCatchError(res, 'Error follow user', error, 500);
     }
-
 }
 
 
@@ -145,9 +144,35 @@ export const unfollowUser = async (req, res) => {
         }
         handleCatchError(res, 'Error un-follow user', error, 500);
     }
-
 }
 
+
+export const getFollowersLists = async (req, res) => {
+    try {
+        const userId = req.user._id
+        const user = await UserModel.findById(userId)
+        if (!user) {
+            return handleValidationError(res , 'User not found' , 404)
+        }
+
+        const followersLists = await UserModel.find({
+            _id : {
+                $in : user.followers
+            }
+        })
+        // console.log(followersLists);
+        res.status(200).json({
+            success : true,
+            followersCount   : followersLists.length,
+            followersLists : followersLists
+        })
+    } catch (error) {
+          if (error.name === 'CastError') {
+            return handleCastError(res, 'Invalid Id')
+        }
+        handleCatchError(res, 'Error while fetching the folowers users lists', error, 500);
+    }
+}
 
 
 export const blockUser = async (req, res) => {
