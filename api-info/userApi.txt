@@ -119,6 +119,13 @@ curl --location 'http://localhost:5757/api/user/get-followers-lists' \
 
 
 
+GET FOLLOWING LISTS
+GET ==> http://localhost:5757/api/user/get-following-lists
+
+curl --location 'http://localhost:5757/api/user/get-following-lists' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2QwOTNhYjVkZmFhNWZiNWQ2ODMiLCJpYXQiOjE3MTE0NDAwNTQsImV4cCI6MTcxMjA0NDg1NH0.XqtX7FRtcgQwX16Vc5k5YgawIlYAnTXlUQr97zfDarA'
+
+
 BLOCK USER
          (other userId which we want to block the user  ==> 65f6d4add88915a761b331a2)
 POST ==> http://localhost:5757/api/user/block/65f6d4add88915a761b331a2

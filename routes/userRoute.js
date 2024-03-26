@@ -1,5 +1,5 @@
 import express from 'express';
-import { blockUser, deleteUser, followUser, getBlockLists, getFollowersLists, getSingleUser, searchUser, unblockUser, unfollowUser, updateUser, uploadProfileCoverPicture, uploadProfilePicture } from '../controllers/userController.js';
+import { blockUser, deleteUser, followUser, getBlockLists, getFollowersLists, getFollowingLists, getSingleUser, searchUser, unblockUser, unfollowUser, updateUser, uploadProfileCoverPicture, uploadProfilePicture } from '../controllers/userController.js';
 import { isAuthenticated } from '../middlewares/isAuthenticate.js';
 import upload from '../middlewares/upload.js';
 
@@ -19,6 +19,9 @@ userRouter.post('/unfollow/:userId' , isAuthenticated , unfollowUser )
 
 //get followers user lists
 userRouter.get('/get-followers-lists' , isAuthenticated , getFollowersLists)
+
+//get following user lists
+userRouter.get('/get-following-lists' , isAuthenticated , getFollowingLists)
 
 // which user we want to block so mentioned in the req.params(userId)
 userRouter.post('/block/:userId' , isAuthenticated , blockUser )
