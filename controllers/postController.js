@@ -140,6 +140,7 @@ export const getAllPosts = async (req, res) => {
         res.status(200).json({
             success: true,
             message: "Post fetched successfully",
+            postCount : allPosts.length,
             post: allPosts
         })
 
@@ -169,6 +170,7 @@ export const getUserPosts = async (req, res) => {
         res.status(200).json({
             success: true,
             message: "Post fetched successfully",
+            postCount : userPosts.length,
             post: userPosts
         })
 
@@ -181,6 +183,71 @@ export const getUserPosts = async (req, res) => {
 
     }
 }
+
+
+export const getPostOfFollowing = async (req, res) => {
+    try {
+
+        const user = await UserModel.findById(req.user._id);
+        if(!user){
+            return handleValidationError(res , 'User not found' , 404);
+        }
+        const postOfFollowing = await PostModel.find({
+            user: {
+                $in: user.following
+            }
+        })
+
+        if(!postOfFollowing){
+            return handleValidationError(res , 'No post from following users' , 404)
+        }
+        console.log(postOfFollowing.length);
+        res.status(200).json({
+            success: true,
+            postCount: postOfFollowing.length,
+            postOfFollowing : postOfFollowing
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error while fetching the posts of the following",
+            error: error.message
+        })
+    }
+}
+
+
+export const getPostOfFollowers = async (req, res) => {
+    try {
+
+        const user = await UserModel.findById(req.user._id);
+        if(!user){
+            return handleValidationError(res , 'User not found' , 404);
+        }
+        const postOfFollowers = await PostModel.find({
+            user: {
+                $in: user.followers
+            }
+        })
+
+        if(!postOfFollowers){
+            return handleValidationError(res , 'No post from followers users' , 404)
+        }
+        console.log(postOfFollowers.length);
+        res.status(200).json({
+            success: true,
+            postCount: postOfFollowers.length,
+            postOfFollowers : postOfFollowers
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error while fetching the posts of the followers",
+            error: error.message
+        })
+    }
+}
+
 
 
 export const deletePost = async (req, res) => {

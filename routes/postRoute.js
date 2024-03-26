@@ -1,7 +1,7 @@
 import express from 'express';
 import upload from '../middlewares/upload.js';
 import { isAuthenticated } from '../middlewares/isAuthenticate.js';
-import { UnlikePost, createPost, createPostWithImages, deletePost, getAllPosts, getUserPosts, likePost, updatePost } from '../controllers/postController.js';
+import { UnlikePost, createPost, createPostWithImages, deletePost, getAllPosts, getPostOfFollowers, getPostOfFollowing, getUserPosts, likePost, updatePost } from '../controllers/postController.js';
 
 
 const postRouter = express.Router();
@@ -20,6 +20,12 @@ postRouter.get('/get-all/:userId' , isAuthenticated , getAllPosts)
 
 // get user posts
 postRouter.get('/get-user-posts' , isAuthenticated , getUserPosts)
+
+// get user posts
+postRouter.get('/get-post-of-following' , isAuthenticated , getPostOfFollowing)
+
+// get user posts
+postRouter.get('/get-post-of-followers' , isAuthenticated , getPostOfFollowers)
 
 // delete post
 postRouter.delete('/delete/:postId' , isAuthenticated , deletePost)
