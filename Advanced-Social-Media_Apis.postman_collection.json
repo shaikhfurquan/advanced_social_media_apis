@@ -1,0 +1,1338 @@
+{
+	"info": {
+		"_postman_id": "e0071146-d6df-4225-ad0d-7d0111abd485",
+		"name": "Advanced-Social-Media_Apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33188247"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\" : \"mk\",\r\n    \"fullName\" : \"mk\",\r\n    \"email\" : \"mk@gmail.com\",\r\n    \"password\" : \"123\",\r\n    \"bio\" : \"mk bio\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"email\" : \"kp@gmail.com\",\r\n    \"userName\" : \"kp\",\r\n    \"password\" : \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "current-user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/auth/current-user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"auth",
+								"current-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-single-user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/user/get/65f6d4add88915a761b331a2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"get",
+								"65f6d4add88915a761b331a2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"bio\" : \"shaikh bio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/user/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "follow-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/user/follow/65fd3df49724eb14a07c14e3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"follow",
+								"65fd3df49724eb14a07c14e3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "un-follow-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/user/unfollow/65f6d4add88915a761b331a2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"unfollow",
+								"65f6d4add88915a761b331a2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-followers-lists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/user/get-followers-lists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"get-followers-lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "block-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/user/block/65f6d4ccd88915a761b331a6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"block",
+								"65f6d4ccd88915a761b331a6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "un-block-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/user/unblock/65f6d4add88915a761b331a2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"unblock",
+								"65f6d4add88915a761b331a2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "block-lists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/user/blocked-lists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"blocked-lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/user/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search-user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/user/search/kP",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"search",
+								"kP"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-profile-picture",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/intel/Downloads/profile-8268938_640.webp"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/user/update-profile-picture",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"update-profile-picture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-cover-picture",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "coverPicture",
+									"type": "file",
+									"src": "/C:/Users/intel/Downloads/laptop-png.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/user/update-cover-picture",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"update-cover-picture"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-following-lists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/user/get-following-lists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"user",
+								"get-following-lists"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "posts",
+			"item": [
+				{
+					"name": "create-post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"caption\" : \"This is mk post caption\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/post/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"post",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-post-with-image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "caption",
+									"value": "kp post cap with images",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/G:/Desktop Wallpaper/baby.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/post/create-with-image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"post",
+								"create-with-image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"caption\" : \"Sf post cap with imagesss\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/post/update/65fd3dd19724eb14a07c14df",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"post",
+								"update",
+								"65fd3dd19724eb14a07c14df"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/post/get-all/65f6d4add88915a761b331a2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"post",
+								"get-all",
+								"65f6d4add88915a761b331a2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/post/get-user-posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"post",
+								"get-user-posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/post/delete/65fd444d3e04f8d6f3ddf2a8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"post",
+								"delete",
+								"65fd444d3e04f8d6f3ddf2a8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "like-post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/post/like/660280ae8cda6e0376065d69",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"post",
+								"like",
+								"660280ae8cda6e0376065d69"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unlike-post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/post/un-like/65fd3dc59724eb14a07c14db",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"post",
+								"un-like",
+								"65fd3dc59724eb14a07c14db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-post-of-following",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/post/get-post-of-following",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"post",
+								"get-post-of-following"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-post-of-followers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/post/get-post-of-followers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"post",
+								"get-post-of-followers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comment",
+			"item": [
+				{
+					"name": "add-comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postId\" : \"660280ae8cda6e0376065d69\",\r\n    \"text\" :\"nice\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/comment/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"comment",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-reply-comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\" : \"Thanks😊\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/comment/add/reply/65ff235f42a6275f9fc4f1bf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"comment",
+								"add",
+								"reply",
+								"65ff235f42a6275f9fc4f1bf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"text\" : \"mk comment\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/comment/update/65fdbee5285d6e7af0da7f86",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"comment",
+								"update",
+								"65fdbee5285d6e7af0da7f86"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-reply-comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\" : \"Thanks😊\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/comment/update/65fdbee5285d6e7af0da7f86/replies/65fdc6fcce0afb51aa2bbfb5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"comment",
+								"update",
+								"65fdbee5285d6e7af0da7f86",
+								"replies",
+								"65fdc6fcce0afb51aa2bbfb5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comments-on-post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/comment/post/65fd3dc59724eb14a07c14db",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"comment",
+								"post",
+								"65fd3dc59724eb14a07c14db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/comment/delete/65fdd40fb0ebc6ad8d6bb4b4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"comment",
+								"delete",
+								"65fdd40fb0ebc6ad8d6bb4b4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-reply-comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/comment/delete/65ff235f42a6275f9fc4f1bf/reply/65ff239642a6275f9fc4f1c4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"comment",
+								"delete",
+								"65ff235f42a6275f9fc4f1bf",
+								"reply",
+								"65ff239642a6275f9fc4f1c4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "like-comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/comment/like/65ff235f42a6275f9fc4f1bf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"comment",
+								"like",
+								"65ff235f42a6275f9fc4f1bf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unlike-comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/comment/un-like/65ff235f42a6275f9fc4f1bf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"comment",
+								"un-like",
+								"65ff235f42a6275f9fc4f1bf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "like-reply-comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/comment/65ff235f42a6275f9fc4f1bf/reply/like/65ff36beaf412713420b820e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"comment",
+								"65ff235f42a6275f9fc4f1bf",
+								"reply",
+								"like",
+								"65ff36beaf412713420b820e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "un-like-reply-comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/comment/65ff235f42a6275f9fc4f1bf/reply/un-like/65ff36beaf412713420b820e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"comment",
+								"65ff235f42a6275f9fc4f1bf",
+								"reply",
+								"un-like",
+								"65ff36beaf412713420b820e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "story",
+			"item": [
+				{
+					"name": "create-story",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "my first sf story text",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/G:/Desktop Wallpaper/359695.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/story/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"story",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-current-user-story",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "my first sf story text",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/G:/Desktop Wallpaper/359695.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/story/get/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"story",
+								"get",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-user-story",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/story/get/user-story/65fd3d093ab5dfaa5fb5d683",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"story",
+								"get",
+								"user-story",
+								"65fd3d093ab5dfaa5fb5d683"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-story",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/story/delete/66000f4155a51d086a73ab5f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"story",
+								"delete",
+								"66000f4155a51d086a73ab5f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-all-story",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/story/delete/all-stories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"story",
+								"delete",
+								"all-stories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "conversation",
+			"item": [
+				{
+					"name": "create-conversation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstUser\" : \"65fd3d093ab5dfaa5fb5d683\",\r\n    \"secondUser\" : \"65fd3df49724eb14a07c14e3\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/conversation/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"conversation",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-conversation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/conversation/get/65fd3d093ab5dfaa5fb5d683",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"conversation",
+								"get",
+								"65fd3d093ab5dfaa5fb5d683"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-two-conversation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/conversation/get/65fd3d093ab5dfaa5fb5d683/65fd3df49724eb14a07c14e3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"conversation",
+								"get",
+								"65fd3d093ab5dfaa5fb5d683",
+								"65fd3df49724eb14a07c14e3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-conversation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/conversation/delete/66012e44ac565cdd1503ab36",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"conversation",
+								"delete",
+								"66012e44ac565cdd1503ab36"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "message",
+			"item": [
+				{
+					"name": "create-message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"conversationId\" : \"660130cb20cad9dec2c87b32\",\r\n    \"sender\" : \"65fd3d093ab5dfaa5fb5d683\",\r\n    \"text\" : \"Hi..\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/message/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"message",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-message",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2QwOTNhYjVkZmFhNWZiNWQ2ODMiLCJpYXQiOjE3MTEzMTE3MzksImV4cCI6MTcxMTkxNjUzOX0.lSgvci1RJUKAfRmuR042bAYwJgnpVYBDOYGs-RelvBQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"conversationId\" : \"660130cb20cad9dec2c87b32\",\n    \"sender\" : \"65fd3d093ab5dfaa5fb5d683\",\n    \"text\" : \"Hi..\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5757/api/message/get/660130cb20cad9dec2c87b32",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"message",
+								"get",
+								"660130cb20cad9dec2c87b32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-message",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5757/api/message/delete/66013af1c09bebc9c85dc219",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5757",
+							"path": [
+								"api",
+								"message",
+								"delete",
+								"66013af1c09bebc9c85dc219"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

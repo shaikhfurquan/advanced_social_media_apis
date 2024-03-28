@@ -21,10 +21,10 @@ postRouter.get('/get-all/:userId' , isAuthenticated , getAllPosts)
 // get user posts
 postRouter.get('/get-user-posts' , isAuthenticated , getUserPosts)
 
-// get user posts
+// get user posts of following users
 postRouter.get('/get-post-of-following' , isAuthenticated , getPostOfFollowing)
 
-// get user posts
+// get user posts of followers users
 postRouter.get('/get-post-of-followers' , isAuthenticated , getPostOfFollowers)
 
 // delete post

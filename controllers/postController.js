@@ -165,7 +165,17 @@ export const getUserPosts = async (req, res) => {
             return handleValidationError(res, 'User not found', 404);
         }
 
-        const userPosts = await PostModel.find({ user: req.user._id })
+        const userPosts = await PostModel.find({ user: req.user._id }).populate({
+            path: "likes",
+            select: "userName fillName profilePicture"
+        }).populate({
+            path: "comments",
+            select: "text"
+        }).populate({
+            path: "user",
+            select: "userName fillName profilePicture"
+        });
+        // console.log(userPosts);
 
         res.status(200).json({
             success: true,
