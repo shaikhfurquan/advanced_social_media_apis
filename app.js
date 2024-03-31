@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv'
 import morgan from 'morgan';
 import cors from 'cors';
+import helmet from 'helmet';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
@@ -22,6 +23,10 @@ const app = express()
 const PORT = process.env.PORT || 3500
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+
+//Helmet helps secure Express apps by setting HTTP response headers
+app.use(helmet())
 
 // express middlewares
 app.use(express.json())
