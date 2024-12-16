@@ -1,70 +1,64 @@
-# Advanced Social Media Backend APIs
-This document provides a comprehensive overview of the available APIs for the Advanced Social Media Backend. Below is a breakdown of the API categories and their respective endpoints.
+# Advanced Social Media Backend API Documentation
 
-## Table of Contents
-
+## Available APIs
 - [Auth APIs](#auth-apis)
-  - [Register API](#register-api)
-  - [Login API](#login-api)
-  - [Logout API](#logout-api)
-  - [Current Profile](#current-profile)
-  
-- [User APIs](#user-apis)
-  - [Get Single User](#get-single-user)
-  - [Update User](#update-user)
-  - [Follow User](#follow-user)
-  - [Unfollow User](#unfollow-user)
-  - [Get Followers List](#get-followers-list)
-  - [Get Following List](#get-following-list)
-  - [Block User](#block-user)
-  - [Unblock User](#unblock-user)
-  - [Get Blocked User Lists](#get-blocked-user-lists)
-
+  - [1. Register API](#1-register-api)
+  - [2. Login API](#2-login-api)
+  - [3. Logout API](#3-logout-api)
+  - [4. Current Profile](#4-current-profile)
+- [User  APIs](#user-apis)
+  - [1. Get Single User](#1-get-single-user)
+  - [2. Update User](#2-update-user)
+  - [3. Follow User](#3-follow-user)
+  - [4. Unfollow User](#4-unfollow-user)
+  - [5. Get Followers List](#5-get-followers-list)
+  - [6. Get Following List](#6-get-following-list)
+  - [7. Block User](#7-block-user)
+  - [8. Unblock User](#8-unblock-user)
+  - [9. Block User Lists](#9-block-user-lists)
+  - [10. Delete User](#10-delete-user)
+  - [11. Search User](#11-search-user)
+  - [12. Update Profile Picture](#12-update-profile-picture)
+  - [13. Update Cover Picture](#13-update-cover-picture)
 - [Post APIs](#post-apis)
-  - [Create Post](#create-post)
-  - [Create Post with Images](#create-post-with-images)
-  - [Update Post Caption](#update-post-caption)
-  - [Get All Posts](#get-all-posts)
-  - [Get User Posts](#get-user-posts)
-  - [Get Posts of Following](#get-posts-of-following)
-  - [Get Posts of Followers](#get-posts-of-followers)
-  - [Delete Post](#delete-post)
-  - [Like Post](#like-post)
-  - [Un-Like Post](#un-like-post)
-
+  - [1. Create Post](#1-create-post)
+  - [2. Create Post with Images](#2-create-post-with-images)
+  - [3. Update Post Caption](#3-update-post-caption)
+  - [4. Get All Posts](#4-get-all-posts)
+  - [5. Get User Posts](#5-get-user-posts)
+  - [6. Get Posts of Following](#6-get-posts-of-following)
+  - [7. Get Posts of Followers](#7-get-posts-of-followers)
+  - [8. Delete a Post](#8-delete-a-post)
+  - [9. Like Post](#9-like-post)
+  - [10. Unlike Post](#10-unlike-post)
 - [Comment APIs](#comment-apis)
-  - [Add Comment to Post](#add-comment-to-post)
-  - [Reply on Comment](#reply-on-comment)
-  - [Update Comment](#update-comment)
-  - [Update Reply Comment](#update-reply-comment)
-  - [Get Comments on Post](#get-comments-on-post)
-  - [Delete Comment](#delete-comment)
-  - [Delete Reply Comment](#delete-reply-comment)
-  - [Like Comment](#like-comment)
-  - [Un-Like Comment](#un-like-comment)
-
+  - [1. Add Comment to Post](#1-add-comment-to-post)
+  - [2. Reply on Comment](#2-reply-on-comment)
+  - [3. Update Comment](#3-update-comment)
+  - [4. Update Reply Comment](#4-update-reply-comment)
+  - [5. Get Comment on Post](#5-get-comment-on-post)
+  - [6. Delete Comment](#6-delete-comment)
+  - [7. Delete Reply Comment](#7-delete-reply-comment)
+  - [8. Like Comment](#8-like-comment)
+  - [9. Unlike Comment](#9-unlike-comment)
+  - [10. Like Reply Comment](#10-like-reply-comment)
+  - [11. Unlike Reply Comment](#11-unlike-reply-comment)
 - [Story APIs](#story-apis)
-  - [Create Story](#create-story)
-  - [Get Current User Stories](#get-current-user-stories)
-  - [Get User's Story](#get-users-story)
-  - [Delete Story](#delete-story)
-  - [Delete All Stories](#delete-all-stories)
-
-- [Conversation APIs](#conversation-apis)
-  - [Create Conversation](#create-conversation)
-  - [Get Conversation](#get-conversation)
-  - [Get Two Users Conversations](#get-two-users-conversations)
-  - [Delete Conversation](#delete-conversation)
-
-- [Messages APIs](#messages-apis)
-  - [Create Message](#create-message)
-  - [Get Messages](#get-messages)
+  - [1. Create Story](#1-create-story)
+  - [2. Get Current User Story](#2-get-current-user-story)
+  - [3. Get User Story](#3-get-user-story)
+  - [4. Delete Story](#4-delete-story)
+  - [5. Delete All Stories](#5-delete-all-stories)
+- [Message APIs](#message-apis)
+  - [1. Create Message](#1-create-message)
+  - [2. Get Message](#2-get-message)
 
 ---
+
 ## Auth APIs
 
 ### 1. Register API
-- **Endpoint:** `POST /api/auth/register`
+- **Endpoint:** `POST http://localhost:5757/api/auth/register`
 - **Request Body:**
     ```json
     {
@@ -89,7 +83,7 @@ This document provides a comprehensive overview of the available APIs for the Ad
     ```
 
 ### 2. Login API
-- **Endpoint:** `POST /api/auth/login`
+- **Endpoint:** `POST http://localhost:5757/api/auth/login`
 - **Request Body:**
     ```json
     {
@@ -108,14 +102,14 @@ This document provides a comprehensive overview of the available APIs for the Ad
     ```
 
 ### 3. Logout API
-- **Endpoint:** `GET /api/auth/logout`
+- **Endpoint:** `GET http://localhost:5757/api/auth/logout`
 - **CURL Example:**
     ```bash
     curl --location 'http://localhost:5757/api/auth/logout'
     ```
 
 ### 4. Current Profile
-- **Endpoint:** `GET /api/auth/current-user`
+- **Endpoint:** `GET http://localhost:5757/api/auth/current-user`
 - **CURL Example:**
     ```bash
     curl --location 'http://localhost:5757/api/auth/current-user'
@@ -126,14 +120,14 @@ This document provides a comprehensive overview of the available APIs for the Ad
 ## User APIs
 
 ### 1. Get Single User
-- **Endpoint:** `GET /api/user/get/{userId}`
+- **Endpoint:** `GET http://localhost:5757/api/user/get/{userId}`
 - **CURL Example:**
     ```bash
     curl --location 'http://localhost:5757/api/user/get/65f6d4add88915a761b331a2'
     ```
 
 ### 2. Update User
-- **Endpoint:** `PUT /api/user/update`
+- **Endpoint:** `PUT http://localhost:5757/api/user/update`
 - **Request Body:**
     ```json
     {
@@ -150,59 +144,90 @@ This document provides a comprehensive overview of the available APIs for the Ad
     ```
 
 ### 3. Follow User
-- **Endpoint:** `POST /api/user/follow/{userId}`
+- **Endpoint:** `POST http://localhost:5757/api/user/follow/{userId}`
 - **CURL Example:**
     ```bash
     curl --location --request POST 'http://localhost:5757/api/user/follow/65f6d4add88915a761b331a2'
     ```
 
 ### 4. Unfollow User
-- **Endpoint:** `POST /api/user/unfollow/{userId}`
+- **Endpoint:** `POST http://localhost:5757/api/user/unfollow/{userId}`
 - **CURL Example:**
     ```bash
     curl --location --request POST 'http://localhost:5757/api/user/unfollow/65f6d4add88915a761b331a2'
     ```
 
 ### 5. Get Followers List
-- **Endpoint:** `GET /api/user/get-followers-lists`
+- **Endpoint:** `GET http://localhost:5757/api/user/get-followers-lists`
 - **CURL Example:**
     ```bash
     curl --location 'http://localhost:5757/api/user/get-followers-lists'
     ```
 
 ### 6. Get Following List
-- **Endpoint:** `GET /api/user/get-following-lists`
+- **Endpoint:** `GET http://localhost:5757/api/user/get-following-lists`
 - **CURL Example:**
     ```bash
     curl --location 'http://localhost:5757/api/user/get-following-lists'
     ```
 
 ### 7. Block User
-- **Endpoint:** `POST /api/user/block/{userId}`
+- **Endpoint:** `POST http://localhost:5757/api/user/block/{userId}`
 - **CURL Example:**
     ```bash
     curl --location --request POST 'http://localhost:5757/api/user/block/65f6d4add88915a761b331a2'
     ```
 
 ### 8. Unblock User
-- **Endpoint:** `POST /api/user/unblock/{userId}`
+- **Endpoint:** `POST http://localhost:5757/api/user/unblock/{userId}`
 - **CURL Example:**
     ```bash
     curl --location --request POST 'http://localhost:5757/api/user/unblock/65f6d4add88915a761b331a2'
     ```
 
-### 9. Get Blocked User Lists
-- **Endpoint:** `GET /api/user/blocked-lists`
-- **CURL Example
+### 9. Block User Lists
+- **Endpoint:** `GET http://localhost:5757/api/user/blocked-lists`
+- **CURL Example:**
+    ```bash
+    curl --location 'http://localhost:5757/api/user/blocked-lists'
+    ```
 
+### 10. Delete User
+- **Endpoint:** `DELETE http://localhost:5757/api/user/delete`
+- **CURL Example:**
+    ```bash
+    curl --location --request DELETE 'http://localhost:5757/api/user/delete'
+    ```
 
+### 11. Search User
+- **Endpoint:** `GET http://localhost:5757/api/user/search/{query}`
+- **CURL Example:**
+    ```bash
+    curl --location 'http://localhost:5757/api/user/search/kP'
+    ```
 
-# Post APIs
+### 12. Update Profile Picture
+- **Endpoint:** `PUT http://localhost:5757/api/user/update-profile-picture`
+- **CURL Example:**
+    ```bash
+    curl --location --request PUT 'http://localhost:5757/api/user/update -profile-picture' \
+    --form 'profilePicture=@"/G:/Desktop Wallpaper/∆LE_._ZkJmRmZdcg.jpg"'
+    ```
 
-This section provides details about the Post APIs for the Advanced Social Media application. Below are the available endpoints for post management.
+### 13. Update Cover Picture
+- **Endpoint:** `PUT http://localhost:5757/api/user/update-cover-picture`
+- **CURL Example:**
+    ```bash
+    curl --location --request PUT 'http://localhost:5757/api/user/update-cover-picture' \
+    --form 'coverPicture=@"/C:/Users/intel/Downloads/laptop-png.jpg"'
+    ```
+
+---
+
+## Post APIs
 
 ### 1. Create Post
-- **Endpoint:** `POST /api/post/create`
+- **Endpoint:** `POST http://localhost:5757/api/post/create`
 - **Request Body:**
     ```json
     {
@@ -213,28 +238,23 @@ This section provides details about the Post APIs for the Advanced Social Media 
     ```bash
     curl --location 'http://localhost:5757/api/post/create' \
     --header 'Content-Type: application/json' \
-    --header 'Cookie: token=YOUR_TOKEN_HERE' \
     --data '{
         "caption": "This is sf caption"
     }'
     ```
 
 ### 2. Create Post with Images
-- **Endpoint:** `POST /api/post/create-with-image`
-- **Request Body:**
-    - **caption:** "This is sf caption"
-    - **images:** select images
+- **Endpoint:** `POST http://localhost:5757/api/post/create-with-image`
 - **CURL Example:**
     ```bash
     curl --location 'http://localhost:5757/api/post/create-with-image' \
-    --header 'Cookie: YOUR_TOKEN_HERE' \
     --form 'caption="sf cap with images"' \
     --form 'images=@"/G:/Desktop Wallpaper/baby.jpg"' \
     --form 'images=@"/G:/Desktop Wallpaper/car.jpg"'
     ```
 
 ### 3. Update Post Caption
-- **Endpoint:** `PUT /api/post/update/{postId}`
+- **Endpoint:** `PUT http://localhost:5757/api/post/update/{postId}`
 - **Request Body:**
     ```json
     {
@@ -245,85 +265,70 @@ This section provides details about the Post APIs for the Advanced Social Media 
     ```bash
     curl --location --request PUT 'http://localhost:5757/api/post/update/65fc6e6dcf3e04e86fbbfceb' \
     --header 'Content-Type: application/json' \
-    --header 'Cookie: YOUR_TOKEN_HERE' \
     --data '{
         "caption": "This is sf caption"
     }'
     ```
 
 ### 4. Get All Posts
-- **Endpoint:** `GET /api/post/get-all/{userId}`
+- **Endpoint:** `GET http://localhost:5757/api/post/get-all/{userId}`
 - **CURL Example:**
     ```bash
-    curl --location 'http://localhost:5757/api/post/get-all/65f6d4add88915a761b331a2' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location 'http://localhost:5757/api/post/get-all/65f6d4add88915a761b331a2'
     ```
 
 ### 5. Get User Posts
-- **Endpoint:** `GET /api/post/get-user-posts`
+- **Endpoint:** `GET http://localhost:5757/api/post/get-user-posts`
 - **CURL Example:**
     ```bash
-    curl --location 'http://localhost:5757/api/post/get-user-posts' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location 'http://localhost:5757/api/post/get-user-posts'
     ```
 
 ### 6. Get Posts of Following
-- **Endpoint:** `GET /api/post/get-post-of-following`
+- **Endpoint:** `GET http://localhost:5757/api/post/get-post-of-following`
 - **CURL Example:**
     ```bash
-    curl --location 'http://localhost:5757/api/post/get-post-of-following' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location 'http://localhost:5757/api/post/get-post-of-following'
     ```
 
 ### 7. Get Posts of Followers
-- **Endpoint:** `GET /api/post/get-post-of-followers`
+- **Endpoint:** `GET http://localhost:5757/api/post/get-post-of-followers`
 - **CURL Example:**
     ```bash
-    curl --location 'http://localhost:5757/api/post/get-post-of-followers' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location 'http://localhost:5757/api/post/get-post-of-followers'
     ```
 
 ### 8. Delete a Post
-- **Endpoint:** `DELETE /api/post/delete/{postId}`
+- **Endpoint:** `DELETE http://localhost:5757/api/post/delete/{postId}`
 - **CURL Example:**
     ```bash
-    curl --location --request DELETE 'http://localhost:5757/api/post/delete/65fc93a4a7d9800167081fc5' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location --request DELETE 'http://localhost:5757/api/post/delete/65fc93a4a7d9800167081fc5'
     ```
 
 ### 9. Like Post
-- **Endpoint:** `POST /api/post/like/{postId}`
+- **Endpoint:** `POST http://localhost:5757/api/post/like/{postId}`
 - **CURL Example:**
     ```bash
-    curl --location --request POST 'http://localhost:5757/api/post/like/65fd3dc59724eb14a07c14db' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location --request POST 'http://localhost:5757/api/post/like/65fd3dc59724eb14a07c14db'
     ```
 
-### 10. Un-Like Post
-- **Endpoint:** `POST /api/post/un-like/{postId}`
+### 10. Unlike Post
+- **Endpoint:** `POST http://localhost:5757/api/post/un-like/{postId}`
 - **CURL Example:**
     ```bash
-    curl --location --request POST 'http://localhost:5757/api/post/un-like/65fd3dc59724eb14a07c14db' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location --request POST 'http://localhost:5757/api/post/un-like/65fd3dc59724eb14a07c14db'
     ```
 
-## Notes
-- Replace `YOUR_TOKEN_HERE` with the actual token obtained during login.
-- Ensure that the server is running
+---
 
-
-
-
-# Comments APIs
-
-This section provides details about the Comments APIs for the Advanced Social Media application. Below are the available endpoints for comment management.
+## Comment APIs
 
 ### 1. Add Comment to Post
-- **Endpoint:** `POST /api/comment/add`
+- **Endpoint:** `POST http://localhost:5757/api/comment/add`
 - **Request Body:**
     ```json
     {
-        "postId": "65fd3dc59724eb14a07c14db",
+        "postId": "65fd3dc59724eb14a 07c14db",
         "text": "comment on the post"
     }
     ```
@@ -331,7 +336,6 @@ This section provides details about the Comments APIs for the Advanced Social Me
     ```bash
     curl --location 'http://localhost:5757/api/comment/add' \
     --header 'Content-Type: application/json' \
-    --header 'Cookie: YOUR_TOKEN_HERE' \
     --data '{
         "postId": "65fd3dc59724eb14a07c14db",
         "text": "comment on the post"
@@ -339,7 +343,7 @@ This section provides details about the Comments APIs for the Advanced Social Me
     ```
 
 ### 2. Reply on Comment
-- **Endpoint:** `POST /api/comment/add/reply/{commentId}`
+- **Endpoint:** `POST http://localhost:5757/api/comment/add/reply/{commentId}`
 - **Request Body:**
     ```json
     {
@@ -350,197 +354,139 @@ This section provides details about the Comments APIs for the Advanced Social Me
     ```bash
     curl --location 'http://localhost:5757/api/comment/add/reply/65fdbee5285d6e7af0da7f86' \
     --header 'Content-Type: application/json' \
-    --header 'Cookie: YOUR_TOKEN_HERE' \
     --data '{
         "text": "reply on comment"
     }'
     ```
 
 ### 3. Update Comment
-- **Endpoint:** `PUT /api/comment/update/{commentId}`
+- **Endpoint:** `PUT http://localhost:5757/api/comment/update/{commentId}`
+- **Request Body:**
+    ```json
+    {
+        "text": "mk comment"
+    }
+    ```
 - **CURL Example:**
     ```bash
     curl --location --request PUT 'http://localhost:5757/api/comment/update/65fdbee5285d6e7af0da7f86' \
     --header 'Content-Type: application/json' \
-    --header 'Cookie: YOUR_TOKEN_HERE' \
     --data '{
         "text": "mk comment"
     }'
     ```
 
 ### 4. Update Reply Comment
-- **Endpoint:** `PUT /api/comment/update/{commentId}/replies/{replyId}`
+- **Endpoint:** `PUT http://localhost:5757/api/comment/update/{commentId}/replies/{replyId}`
 - **CURL Example:**
     ```bash
-    curl --location --request PUT 'http://localhost:5757/api/comment/update/65fdbee5285d6e7af0da7f86/replies/65fdc6fcce0afb51aa2bbfb5' \
-    --header 'Content-Type: application/json' \
-    --header 'Cookie: YOUR_TOKEN_HERE' \
-    --data '{
-        "text": "updated reply"
-    }'
+    curl --location --request PUT 'http://localhost:5757/api/comment/update/65fdbee5285d6e7af0da7f86/replies/65fdc6fcce0afb51aa2bbfb5'
     ```
 
-### 5. Get Comments on Post
-- **Endpoint:** `GET /api/comment/post/{postId}`
+### 5. Get Comment on Post
+- **Endpoint:** `GET http://localhost:5757/api/comment/post/{postId}`
 - **CURL Example:**
     ```bash
-    curl --location 'http://localhost:5757/api/comment/post/65fd3dc59724eb14a07c14db' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location 'http://localhost:5757/api/comment/post/65fd3dc59724eb14a07c14db'
     ```
 
 ### 6. Delete Comment
-- **Endpoint:** `DELETE /api/comment/delete/{commentId}`
+- **Endpoint:** `DELETE http://localhost:5757/api/comment/delete/{commentId}`
 - **CURL Example:**
     ```bash
-    curl --location --request DELETE 'http://localhost:5757/api/comment/delete/65fdd40fb0ebc6ad8d6bb4b4' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location --request DELETE 'http://localhost:5757/api/comment/delete/65fdd40fb0ebc6ad8d6bb4b4'
     ```
 
 ### 7. Delete Reply Comment
-- **Endpoint:** `DELETE /api/comment/delete/{commentId}/reply/{replyId}`
+- **Endpoint:** `DELETE http://localhost:5757/api/comment/delete/{commentId}/reply/{replyId}`
 - **CURL Example:**
     ```bash
-    curl --location --request DELETE 'http://localhost:5757/api/comment/delete/65ff235f42a6275f9fc4f1bf/reply/65ff239642a6275f9fc4f1c4' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location --request DELETE 'http://localhost:5757/api/comment/delete/65ff235f42a6275f9fc4f1bf/reply/65ff239642a6275f9fc4f1c4'
     ```
 
 ### 8. Like Comment
-- **Endpoint:** `POST /api/comment/like/{commentId}`
+- **Endpoint:** `POST http://localhost:5757/api/comment/like/{commentId}`
 - **CURL Example:**
     ```bash
-    curl --location --request POST 'http://localhost:5757/api/comment/like/65ff235f42a6275f9fc4f1bf' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location --request POST 'http://localhost:5757/api/comment/like/65ff235f42a6275f9fc4f1bf'
     ```
 
-### 9. Un-Like Comment
-- **Endpoint:** `POST /api/comment/un-like/{commentId}`
+### 9. Unlike Comment
+- **Endpoint:** `POST http://localhost:5757/api/comment/un-like/{commentId}`
 - **CURL Example:**
     ```bash
-    curl --location --request POST 'http://localhost:5757/api/comment/un-like/65ff235f42a
+    curl --location --request POST 'http://localhost:5757/api/comment/un-like/65ff235f42a6275f9fc4f1bf'
+    ```
 
+### 10. Like Reply Comment
+- **Endpoint:** `POST http://localhost:5757/api/comment/{commentId}/reply/like/{replyId}`
+- **CURL Example:**
+    ```bash
+    curl --location --request POST 'http://localhost:5757/api/comment/65ff235f42a6275f9fc4f1bf/reply/like/65ff36beaf412713420b820e'
+    ```
 
+### 11. Unlike Reply Comment
+- **Endpoint:** `POST http://localhost:5757/api/comment/{commentId}/reply/un-like/{replyId}`
+- **CURL Example:**
+    ```bash
+    curl --location --request POST 'http://localhost :5757/api/comment/65ff235f42a6275f9fc4f1bf/reply/un-like/65ff36beaf412713420b820e'
+    ```
 
-# Story APIs
+---
 
-This section provides details about the Story APIs for the Advanced Social Media application. Below are the available endpoints for story management.
+## Story APIs
 
 ### 1. Create Story
-- **Endpoint:** `POST /api/story/create`
-- **Request Body:**
-    - **text:** "Hello"
-    - **image:** select image
-- **CURL Example:**
-    ```bash
-    curl --location 'http://localhost:5757/api/story/create' \
-    --header 'Cookie: YOUR_TOKEN_HERE' \
-    --form 'text="my first story text"' \
-    --form 'image=@"/G:/Desktop Wallpaper/359695.jpg"'
-    ```
-
-### 2. Get Current User Stories
-- **Endpoint:** `GET /api/story/get/all`
-- **CURL Example:**
-    ```bash
-    curl --location --request GET 'http://localhost:5757/api/story/get/all' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
-    ```
-
-### 3. Get User's Story
-- **Endpoint:** `GET /api/story/get/user-story/{userId}`
-- **CURL Example:**
-    ```bash
-    curl --location 'http://localhost:5757/api/story/get/user-story/65fd3d093ab5dfaa5fb5d683' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
-    ```
-
-### 4. Delete Story
-- **Endpoint:** `DELETE /api/story/delete/{storyId}`
-- **CURL Example:**
-    ```bash
-    curl --location --request DELETE 'http://localhost:5757/api/story/delete/66000f4155a51d086a73ab5f' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
-    ```
-
-### 5. Delete All Stories
-- **Endpoint:** `DELETE /api/story/delete/all-stories`
-- **CURL Example:**
-    ```bash
-    curl --location --request DELETE 'http://localhost:5757/api/story/delete/all-stories' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
-    ```
-
-## Notes
-- Replace `YOUR_TOKEN_HERE` with the actual token obtained during login.
-- Ensure that the server is running on `localhost:5757` or adjust the URL accordingly if hosted elsewhere.
-
-Feel free to reach out for any questions or further clarifications regarding the API usage!
-
-
-
-
-# Conversation APIs
-
-This section provides details about the Conversation APIs for the Advanced Social Media application. Below are the available endpoints for conversation management.
-
-### 1. Create Conversation
-- **Endpoint:** `POST /api/conversation/create`
+- **Endpoint:** `POST http://localhost:5757/api/story/create`
 - **Request Body:**
     ```json
     {
-        "firstUser ": "65fd3d093ab5dfaa5fb5d683", // LOGIN USER
-        "secondUser ": "65fd3df49724eb14a07c14e3"
+        "text": "Hello",
+        "image": "select image"
     }
     ```
 - **CURL Example:**
     ```bash
-    curl --location 'http://localhost:5757/api/conversation/create' \
-    --header 'Content-Type: application/json' \
-    --header 'Cookie: YOUR_TOKEN_HERE' \
-    --data '{
-        "firstUser ": "65fd3d093ab5dfaa5fb5d683",
-        "secondUser ": "65fd3df49724eb14a07c14e3"
-    }'
+    curl --location 'http://localhost:5757/api/story/create' \
+    --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWZkM2RmNDk3MjRlYjE0YTA3YzE0ZTMiLCJpYXQiOjE3MTEyMjYxNzgsImV4cCI6MTcxMTgzMDk3OH0.S19BKOp0DbgNJOGTSTOrKK2AOqPTVpHTAfYbUP9uLs8' \
+    --form 'text="my first story text"' \
+    --form 'image=@"/G:/Desktop Wallpaper/359695.jpg"'
     ```
 
-### 2. Get Conversation
-- **Endpoint:** `GET /api/conversation/get/{userId}`
+### 2. Get Current User Story
+- **Endpoint:** `GET http://localhost:5757/api/story/get/all`
 - **CURL Example:**
     ```bash
-    curl --location 'http://localhost:5757/api/conversation/get/65fd3d093ab5dfaa5fb5d683' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location --request GET 'http://localhost:5757/api/story/get/all'
     ```
 
-### 3. Get Two Users Conversations
-- **Endpoint:** `GET /api/conversation/get/{firstUser Id}/{secondUser Id}`
+### 3. Get User Story
+- **Endpoint:** `GET http://localhost:5757/api/story/get/user-story/{userId}`
 - **CURL Example:**
     ```bash
-    curl --location 'http://localhost:5757/api/conversation/get/65fd3d093ab5dfaa5fb5d683/65fd3df49724eb14a07c14e3' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location 'http://localhost:5757/api/story/get/user-story/65fd3d093ab5dfaa5fb5d683'
     ```
 
-### 4. Delete Conversation
-- **Endpoint:** `DELETE /api/conversation/delete/{conversationId}`
+### 4. Delete Story
+- **Endpoint:** `DELETE http://localhost:5757/api/story/delete/{storyId}`
 - **CURL Example:**
     ```bash
-    curl --location --request DELETE 'http://localhost:5757/api/conversation/delete/66012e44ac565cdd1503ab36' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location --request DELETE 'http://localhost:5757/api/story/delete/66000f4155a51d086a73ab5f'
     ```
 
-## Notes
-- Replace `YOUR_TOKEN_HERE` with the actual token obtained during login.
-- Ensure that the server is running on `localhost:5757` or adjust the URL accordingly if hosted elsewhere.
+### 5. Delete All Stories
+- **Endpoint:** `DELETE http://localhost:5757/api/story/delete/all-stories`
+- **CURL Example:**
+    ```bash
+    curl --location --request DELETE 'http://localhost:5757/api/story/delete/all-stories'
+    ```
 
-Feel free to reach out for any questions or further clarifications regarding the API usage!
+---
 
-
-
-
-# Messages APIs
-
-This section provides details about the Messages APIs for the Advanced Social Media application. Below are the available endpoints for message management.
+## Message APIs
 
 ### 1. Create Message
-- **Endpoint:** `POST /api/message/create`
+- **Endpoint:** `POST http://localhost:5757/api/message/create`
 - **Request Body:**
     ```json
     {
@@ -553,7 +499,6 @@ This section provides details about the Messages APIs for the Advanced Social Me
     ```bash
     curl --location 'http://localhost:5757/api/message/create' \
     --header 'Content-Type: application/json' \
-    --header 'Cookie: YOUR_TOKEN_HERE' \
     --data '{
         "conversationId": "660130cb20cad9dec2c87b32",
         "sender": "65fd3d093ab5dfaa5fb5d683",
@@ -561,17 +506,9 @@ This section provides details about the Messages APIs for the Advanced Social Me
     }'
     ```
 
-### 2. Get Messages
-- **Endpoint:** `GET /api/message/get/{conversationId}`
+### 2. Get Message
+- **Endpoint:** `GET http://localhost:5757/api/message/get/{conversationId}`
 - **CURL Example:**
     ```bash
-    curl --location --request GET 'http://localhost:5757/api/message/get/660130cb20cad9dec2c87b32' \
-    --header 'Content-Type: application/json' \
-    --header 'Cookie: YOUR_TOKEN_HERE'
+    curl --location --request GET 'http://localhost:5757/api/message/get/660130cb20cad9dec2c87b32'
     ```
-
-## Notes
-- Replace `YOUR_TOKEN_HERE` with the actual token obtained during login.
-- Ensure that the server is running on `localhost:5757` or adjust the URL accordingly if hosted elsewhere.
-
-Feel free to reach out for any questions or further clarifications regarding the API usage!
