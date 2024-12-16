@@ -1,5 +1,66 @@
 # Advanced Social Media Backend APIs
+This document provides a comprehensive overview of the available APIs for the Advanced Social Media Backend. Below is a breakdown of the API categories and their respective endpoints.
 
+## Table of Contents
+
+- [Auth APIs](#auth-apis)
+  - [Register API](#register-api)
+  - [Login API](#login-api)
+  - [Logout API](#logout-api)
+  - [Current Profile](#current-profile)
+  
+- [User APIs](#user-apis)
+  - [Get Single User](#get-single-user)
+  - [Update User](#update-user)
+  - [Follow User](#follow-user)
+  - [Unfollow User](#unfollow-user)
+  - [Get Followers List](#get-followers-list)
+  - [Get Following List](#get-following-list)
+  - [Block User](#block-user)
+  - [Unblock User](#unblock-user)
+  - [Get Blocked User Lists](#get-blocked-user-lists)
+
+- [Post APIs](#post-apis)
+  - [Create Post](#create-post)
+  - [Create Post with Images](#create-post-with-images)
+  - [Update Post Caption](#update-post-caption)
+  - [Get All Posts](#get-all-posts)
+  - [Get User Posts](#get-user-posts)
+  - [Get Posts of Following](#get-posts-of-following)
+  - [Get Posts of Followers](#get-posts-of-followers)
+  - [Delete Post](#delete-post)
+  - [Like Post](#like-post)
+  - [Un-Like Post](#un-like-post)
+
+- [Comment APIs](#comment-apis)
+  - [Add Comment to Post](#add-comment-to-post)
+  - [Reply on Comment](#reply-on-comment)
+  - [Update Comment](#update-comment)
+  - [Update Reply Comment](#update-reply-comment)
+  - [Get Comments on Post](#get-comments-on-post)
+  - [Delete Comment](#delete-comment)
+  - [Delete Reply Comment](#delete-reply-comment)
+  - [Like Comment](#like-comment)
+  - [Un-Like Comment](#un-like-comment)
+
+- [Story APIs](#story-apis)
+  - [Create Story](#create-story)
+  - [Get Current User Stories](#get-current-user-stories)
+  - [Get User's Story](#get-users-story)
+  - [Delete Story](#delete-story)
+  - [Delete All Stories](#delete-all-stories)
+
+- [Conversation APIs](#conversation-apis)
+  - [Create Conversation](#create-conversation)
+  - [Get Conversation](#get-conversation)
+  - [Get Two Users Conversations](#get-two-users-conversations)
+  - [Delete Conversation](#delete-conversation)
+
+- [Messages APIs](#messages-apis)
+  - [Create Message](#create-message)
+  - [Get Messages](#get-messages)
+
+---
 ## Auth APIs
 
 ### 1. Register API
